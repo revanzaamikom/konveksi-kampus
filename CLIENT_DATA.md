@@ -25,12 +25,12 @@ Verify with the client before a production launch if a value looks stale.
 
 ## Contact (CONFIRMED from public sources)
 
-| Channel        | Value                                         | Source                  |
-| -------------- | --------------------------------------------- | ----------------------- |
-| WhatsApp       | **+62 882-2172-9053** (`wa.me/6288221729053`) | Linktree link           |
-| WhatsApp (alt) | **0813-6702-9003**                            | Facebook post           |
-| Website        | **www.konveksikampus.com**                    | Facebook post           |
-| Address        | **Jl. Betoro Raya No.1** (Yogyakarta)         | Facebook post (partial) |
+| Channel        | Value                                         | Source                                                                                              |
+| -------------- | --------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| WhatsApp       | **+62 882-2172-9053** (`wa.me/6288221729053`) | Linktree link — **most reliable**                                                                   |
+| WhatsApp (alt) | 0813-6702-9003                                | Old Facebook post — UNVERIFIED                                                                      |
+| Website        | `konveksikampus.com`                          | Old Facebook post — **URL resolves but returns HTTP 403 (no live content)**. Not used as canonical. |
+| Address        | (partial) "Jl. Betoro Raya No.1"              | Old Facebook post — UNVERIFIED                                                                      |
 
 > Two different WhatsApp numbers appear publicly. **Confirm with the client which is primary**
 > before using one as the main CTA.
@@ -63,8 +63,20 @@ near-black ~70%, red ~1.2% (accent), yellow ~small accent. The brand is **dark +
 
 ## Still open (needs client confirmation)
 
-- Primary WhatsApp number (two candidates above).
-- Full address (only "Jl. Betoro Raya No.1" found).
-- Official email.
-- Whether the website www.konveksikampus.com is live and should be linked.
-- Logo usage rights (the avatar is the owner's personal "AH" mark, not a pure corporate logo).
+- Primary WhatsApp number (two candidates above; Linktree one is most likely).
+- Full address (only "Jl. Betoro Raya No.1" was found, from an old post).
+- Official email (none confirmed — the site does not display one until it exists).
+- Whether `konveksikampus.com` is theirs and should be the live domain. **Currently returns
+  HTTP 403** — it is not used anywhere until confirmed. Set `NEXT_PUBLIC_SITE_URL` to enable
+  indexing + sitemap once a real domain is live.
+- Logo usage rights (the avatar is an "AH" mark that reads as the owner's personal logo).
+
+## How the site handles unverified data
+
+Rather than inventing values, the code degrades safely (`src/lib/site.ts`):
+
+- `url` is empty → `robots.txt` disallows indexing and the sitemap is empty (keeps the
+  preview out of search until a real domain exists).
+- `email` is empty → the email row is simply not rendered in the contact page / footer.
+- `address` shows only what is defensible ("Yogyakarta") until the full address is confirmed.
+- Contact page leads with the **verified** channels (WhatsApp + Instagram).

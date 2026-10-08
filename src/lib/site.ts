@@ -1,9 +1,24 @@
 /**
  * Site-wide configuration — the single place for brand + contact facts.
  *
- * Contact values are taken from the client's PUBLIC sources (see CLIENT_DATA.md):
- * Instagram bio, Linktree, Facebook. Confirm with the client before a production launch.
+ * ⚠️ VERIFICATION STATUS (see CLIENT_DATA.md):
+ *   - Instagram / Linktree (handle, tagline, est. 2012, WhatsApp 6288221729053): from the
+ *     client's own public profiles — reasonably reliable.
+ *   - WhatsApp alt (0813-6702-9003), website, address, email: from an OLD Facebook post and
+ *     are UNVERIFIED. konveksikampus.com resolves but returns HTTP 403 (no live content),
+ *     so it is NOT used as the canonical URL.
+ *
+ * Do not treat unverified values as fact. Confirm with the client before a production launch.
  */
+
+/**
+ * Canonical production URL. Left EMPTY until the client confirms the real domain.
+ * Set via NEXT_PUBLIC_SITE_URL at build time (Netlify env) once known.
+ *
+ * When empty, Next.js resolves metadata (OG image, icons) as root-relative URLs, which is
+ * correct and safe for the preview. No invented domain is committed.
+ */
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
 
 export const siteConfig = {
   name: "KonveksiKampus",
@@ -11,25 +26,31 @@ export const siteConfig = {
   displayName: "Konveksi Kampus",
   tagline: "Vendor Konveksi Yogyakarta",
   description:
-    "Vendor konveksi Yogyakarta sejak 2012. Melayani pembuatan jaket, kaos, korsa, workshirt, wearpack, rompi, jas lab, dan jas almamater dengan kualitas terbaik dan harga terjangkau.",
-  url: "https://www.konveksikampus.com", // from public Facebook post
+    "Vendor konveksi Yogyakarta sejak 2012. Melayani pembuatan jaket, kaos, korsa, workshirt, wearpack, rompi, jas lab, dan jas almamater.",
+  /** Empty until confirmed. See comment above. */
+  url: siteUrl,
   locale: "id_ID",
   established: 2012, // from Instagram bio ("est. 2012")
   /**
    * Primary WhatsApp in international format without "+" or spaces.
-   * Source: Linktree (wa.me/6288221729053).
-   * NOTE: a second public number (0813-6702-9003) exists — confirm the primary with the client.
+   * Source: the client's Linktree (wa.me/6288221729053) — the most reliable public channel.
    */
   whatsappNumber: "6288221729053",
+  /** UNVERIFIED — from an old Facebook post. Confirm before using. */
   whatsappNumberAlt: "6281367029003",
   instagram: "konveksikampus.yk",
-  email: "halo@konveksikampus.com", // TODO: confirm real email with client
-  address: "Jl. Betoro Raya No.1, Yogyakarta", // partial — from public Facebook post
+  /** UNVERIFIED — do NOT assume a domain email exists. Placeholder, confirm with client. */
+  email: "", // TODO(client): real email
+  /** PARTIAL + UNVERIFIED — only "Jl. Betoro Raya No.1" was found. Confirm the full address. */
+  address: "Yogyakarta", // TODO(client): full address
   socials: {
     instagram: "https://www.instagram.com/konveksikampus.yk/",
     linktree: "https://linktr.ee/konveksikampus.yk",
   },
 } as const;
+
+/** True when a canonical URL has been configured. */
+export const hasCanonicalUrl = siteConfig.url.length > 0;
 
 export type SiteConfig = typeof siteConfig;
 

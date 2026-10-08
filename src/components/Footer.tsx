@@ -46,15 +46,27 @@ export function Footer() {
         <div>
           <p className="text-sm font-semibold">Kontak</p>
           <ul className="text-muted-foreground mt-3 space-y-2 text-sm">
-            <li>{siteConfig.address}</li>
             <li>
               <a
-                href={`mailto:${siteConfig.email}`}
+                href={siteConfig.socials.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-foreground transition-colors"
               >
-                {siteConfig.email}
+                Instagram @{siteConfig.instagram}
               </a>
             </li>
+            {siteConfig.address ? <li>{siteConfig.address}</li> : null}
+            {siteConfig.email ? (
+              <li>
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="hover:text-foreground transition-colors"
+                >
+                  {siteConfig.email}
+                </a>
+              </li>
+            ) : null}
           </ul>
         </div>
       </div>

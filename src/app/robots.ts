@@ -1,14 +1,19 @@
 import type { MetadataRoute } from "next";
-import { siteConfig } from "@/lib/site";
+import { hasCanonicalUrl, siteConfig } from "@/lib/site";
 
 export const dynamic = "force-static";
 
 export default function robots(): MetadataRoute.Robots {
+  const rules: MetadataRoute.Robots["rules"] = {
+    userAgent: "*",
+    // Keep the preview out of search indexes until a real domain is configured.
+    allow: hasCanonicalUrl ? "/" : undefined,
+    disallow: hasCanonicalUrl ? undefined : "/",
+  };
+
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-    },
-    sitemap: `${siteConfig.url}/sitemap.xml`,
+    rules,
+    // Only advertise a sitemap when a canonical URL exists.
+    ...(hasCanonicalUrl ? { sitemap: `${siteConfig.url}/sitemap.xml` } : {}),
   };
 }

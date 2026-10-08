@@ -15,29 +15,14 @@ export default function ContactPage() {
     <main className="flex flex-1 flex-col">
       <Section className="py-14">
         <div className="max-w-3xl">
-          <h1 className="text-primary text-3xl font-semibold tracking-tight">Kontak</h1>
+          <h1 className="text-foreground text-3xl font-semibold tracking-tight">Kontak</h1>
           <p className="text-muted-foreground mt-3">
-            Punya pertanyaan atau ingin memesan? Kirimkan detail kebutuhan Anda — jumlah, bahan, dan
-            desain — agar kami dapat menghitungnya dengan tepat.
+            Punya pertanyaan atau ingin memesan? Hubungi kami melalui WhatsApp atau Instagram.
           </p>
         </div>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="border-border bg-card rounded-[var(--radius-surface)] border p-5">
-            <p className="text-muted-foreground text-sm font-semibold">Alamat</p>
-            <p className="mt-1">{siteConfig.address}</p>
-          </div>
-          <div className="border-border bg-card rounded-[var(--radius-surface)] border p-5">
-            <p className="text-muted-foreground text-sm font-semibold">Email</p>
-            <p className="mt-1">
-              <a
-                href={`mailto:${siteConfig.email}`}
-                className="text-accent underline-offset-4 hover:underline"
-              >
-                {siteConfig.email}
-              </a>
-            </p>
-          </div>
+          {/* WhatsApp — verified channel */}
           <div className="border-border bg-card rounded-[var(--radius-surface)] border p-5">
             <p className="text-muted-foreground text-sm font-semibold">WhatsApp</p>
             <p className="mt-1">
@@ -51,6 +36,29 @@ export default function ContactPage() {
               </a>
             </p>
           </div>
+
+          {/* Instagram — verified channel */}
+          <div className="border-border bg-card rounded-[var(--radius-surface)] border p-5">
+            <p className="text-muted-foreground text-sm font-semibold">Instagram</p>
+            <p className="mt-1">
+              <a
+                href={siteConfig.socials.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent underline-offset-4 hover:underline"
+              >
+                @{siteConfig.instagram}
+              </a>
+            </p>
+          </div>
+
+          {/* Address — only shown once the client confirms it */}
+          {siteConfig.address ? (
+            <div className="border-border bg-card rounded-[var(--radius-surface)] border p-5">
+              <p className="text-muted-foreground text-sm font-semibold">Lokasi</p>
+              <p className="mt-1">{siteConfig.address}</p>
+            </div>
+          ) : null}
         </div>
 
         <a

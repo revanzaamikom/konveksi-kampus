@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Lexend, Source_Sans_3 } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
-import { siteConfig } from "@/lib/site";
+import { hasCanonicalUrl, siteConfig } from "@/lib/site";
 import "./globals.css";
 
 const lexend = Lexend({
@@ -20,7 +20,9 @@ const sourceSans = Source_Sans_3({
 const ogImage = "/brand/og-image.jpg";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  // Only set metadataBase when a real canonical domain is configured; otherwise leave it
+  // unset so Next.js uses root-relative URLs (no invented domain).
+  ...(hasCanonicalUrl ? { metadataBase: new URL(siteConfig.url) } : {}),
   title: {
     default: `${siteConfig.displayName} — ${siteConfig.tagline}`,
     template: `%s — ${siteConfig.displayName}`,
