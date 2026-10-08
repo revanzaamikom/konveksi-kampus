@@ -1,0 +1,13 @@
+node_modules
+.next
+out
+build
+coverage
+.env*
+*.log
+.agents
+public/images
+CATALOG PRODUCT.pdf
+KonveksiKampus_product_assets.zip
+package-lock.json
+skills-lock.json
