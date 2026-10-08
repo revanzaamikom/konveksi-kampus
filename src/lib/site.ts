@@ -1,27 +1,33 @@
 /**
  * Site-wide configuration — the single place for brand + contact facts.
  *
- * Values marked TODO are placeholders: the client has not yet provided them.
- * Do not invent contact details (see AGENTS.md §7).
+ * Contact values are taken from the client's PUBLIC sources (see CLIENT_DATA.md):
+ * Instagram bio, Linktree, Facebook. Confirm with the client before a production launch.
  */
 
 export const siteConfig = {
   name: "KonveksiKampus",
   shortName: "KonveksiKampus",
-  tagline: "Konveksi Kampus",
+  displayName: "Konveksi Kampus",
+  tagline: "Vendor Konveksi Yogyakarta",
   description:
-    "Vendor konveksi untuk mahasiswa dan masyarakat umum. Melayani pembuatan kaos, jaket, workshirt, rompi, jas, dan wearpack dengan kualitas terbaik dan harga terjangkau.",
-  url: "https://konveksikampus.example", // TODO: real domain
+    "Vendor konveksi Yogyakarta sejak 2012. Melayani pembuatan jaket, kaos, korsa, workshirt, wearpack, rompi, jas lab, dan jas almamater dengan kualitas terbaik dan harga terjangkau.",
+  url: "https://www.konveksikampus.com", // from public Facebook post
   locale: "id_ID",
+  established: 2012, // from Instagram bio ("est. 2012")
   /**
-   * WhatsApp number in international format without "+" or spaces.
-   * TODO: confirm with client. Placeholder left intentionally obvious.
+   * Primary WhatsApp in international format without "+" or spaces.
+   * Source: Linktree (wa.me/6288221729053).
+   * NOTE: a second public number (0813-6702-9003) exists — confirm the primary with the client.
    */
-  whatsappNumber: "6280000000000", // TODO: real WhatsApp number
-  email: "halo@konveksikampus.example", // TODO: real email
-  address: "Yogyakarta, Indonesia", // TODO: confirm with client
+  whatsappNumber: "6288221729053",
+  whatsappNumberAlt: "6281367029003",
+  instagram: "konveksikampus.yk",
+  email: "halo@konveksikampus.com", // TODO: confirm real email with client
+  address: "Jl. Betoro Raya No.1, Yogyakarta", // partial — from public Facebook post
   socials: {
-    instagram: "", // TODO: confirm with client
+    instagram: "https://www.instagram.com/konveksikampus.yk/",
+    linktree: "https://linktr.ee/konveksikampus.yk",
   },
 } as const;
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Section } from "@/components/Section";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -16,37 +17,46 @@ const misi = [
 
 export default function AboutPage() {
   return (
-    <main className="mx-auto w-full max-w-4xl flex-1 px-6 py-12">
-      <h1 className="text-3xl font-bold tracking-tight">Tentang {siteConfig.name}</h1>
+    <main className="flex flex-1 flex-col">
+      <Section className="py-14">
+        <h1 className="text-primary text-3xl font-semibold tracking-tight">
+          Tentang {siteConfig.name}
+        </h1>
 
-      <p className="text-muted mt-6 text-lg">
-        Kami adalah vendor Konveksi yang menyediakan jasa pembuatan sandang untuk mahasiswa maupun
-        masyarakat umum yang menggunakan kualitas yang terbaik dan harga yang sangat terjangkau bagi
-        pelanggan kami.
-      </p>
-
-      <section className="mt-12">
-        <h2 className="text-xl font-semibold tracking-tight">Visi</h2>
-        <p className="text-muted mt-3">
-          Menjadi konveksi terpercaya dan terjangkau yang mampu memenuhi kebutuhan fashion dengan
-          kualitas terbaik dan harga bersahabat.
+        <p className="text-muted-foreground mt-6 max-w-3xl text-lg">
+          Kami adalah vendor konveksi yang menyediakan jasa pembuatan sandang untuk mahasiswa maupun
+          masyarakat umum, dengan kualitas terbaik dan harga yang terjangkau bagi pelanggan kami.
         </p>
-      </section>
 
-      <section className="mt-10">
-        <h2 className="text-xl font-semibold tracking-tight">Misi</h2>
-        <ul className="text-muted mt-4 space-y-3">
-          {misi.map((item) => (
-            <li key={item} className="flex gap-3">
-              <span
-                aria-hidden="true"
-                className="bg-primary mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
-              />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
+        {/*
+          Visi + Misi: two-column on desktop so the page rhythm differs from the single
+          stacked column above (antislop R-05).
+        */}
+        <div className="mt-12 grid gap-10 lg:grid-cols-2">
+          <section>
+            <h2 className="text-primary text-xl font-semibold tracking-tight">Visi</h2>
+            <p className="text-muted-foreground mt-3">
+              Menjadi konveksi terpercaya dan terjangkau yang mampu memenuhi kebutuhan fashion
+              dengan kualitas terbaik dan harga bersahabat.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-primary text-xl font-semibold tracking-tight">Misi</h2>
+            <ul className="text-muted-foreground mt-4 space-y-3">
+              {misi.map((item) => (
+                <li key={item} className="flex gap-3">
+                  <span
+                    aria-hidden="true"
+                    className="bg-accent mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
+                  />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
+      </Section>
     </main>
   );
 }

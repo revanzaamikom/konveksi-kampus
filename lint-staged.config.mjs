@@ -8,5 +8,7 @@
 export default {
   "src/**/*.{ts,tsx,js,jsx,mjs,cjs}": ["prettier --write", "eslint --fix"],
   "src/**/*.{json,css}": ["prettier --write"],
-  "*.{json,md,cjs,mjs,ts}": ["prettier --write"],
+  "./*.{json,md,cjs,mjs,ts}": ["prettier --write"],
+  "docs/**/*.md": ["prettier --write"],
+  "tools/**/*.{mjs,js}": ["prettier --write"],
 };

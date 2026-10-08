@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Section } from "@/components/Section";
 import { siteConfig, whatsappLink } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -11,35 +12,56 @@ const askMessage =
 
 export default function ContactPage() {
   return (
-    <main className="mx-auto w-full max-w-4xl flex-1 px-6 py-12">
-      <h1 className="text-3xl font-bold tracking-tight">Kontak</h1>
-      <p className="text-muted mt-3 max-w-2xl">
-        Punya pertanyaan atau ingin memesan? Hubungi kami melalui WhatsApp untuk respons tercepat.
-      </p>
-
-      <dl className="mt-10 grid gap-6 sm:grid-cols-2">
-        <div className="border-border rounded-lg border p-5">
-          <dt className="text-muted text-sm font-semibold">Alamat</dt>
-          <dd className="mt-1">{siteConfig.address}</dd>
+    <main className="flex flex-1 flex-col">
+      <Section className="py-14">
+        <div className="max-w-3xl">
+          <h1 className="text-primary text-3xl font-semibold tracking-tight">Kontak</h1>
+          <p className="text-muted-foreground mt-3">
+            Punya pertanyaan atau ingin memesan? Kirimkan detail kebutuhan Anda — jumlah, bahan, dan
+            desain — agar kami dapat menghitungnya dengan tepat.
+          </p>
         </div>
-        <div className="border-border rounded-lg border p-5">
-          <dt className="text-muted text-sm font-semibold">Email</dt>
-          <dd className="mt-1">
-            <a href={`mailto:${siteConfig.email}`} className="text-primary hover:underline">
-              {siteConfig.email}
-            </a>
-          </dd>
-        </div>
-      </dl>
 
-      <a
-        href={whatsappLink(askMessage)}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="bg-primary text-primary-foreground mt-8 inline-flex h-12 items-center rounded-md px-6 text-sm font-semibold transition-opacity hover:opacity-90"
-      >
-        Hubungi via WhatsApp
-      </a>
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="border-border bg-card rounded-[var(--radius-surface)] border p-5">
+            <p className="text-muted-foreground text-sm font-semibold">Alamat</p>
+            <p className="mt-1">{siteConfig.address}</p>
+          </div>
+          <div className="border-border bg-card rounded-[var(--radius-surface)] border p-5">
+            <p className="text-muted-foreground text-sm font-semibold">Email</p>
+            <p className="mt-1">
+              <a
+                href={`mailto:${siteConfig.email}`}
+                className="text-accent underline-offset-4 hover:underline"
+              >
+                {siteConfig.email}
+              </a>
+            </p>
+          </div>
+          <div className="border-border bg-card rounded-[var(--radius-surface)] border p-5">
+            <p className="text-muted-foreground text-sm font-semibold">WhatsApp</p>
+            <p className="mt-1">
+              <a
+                href={whatsappLink(askMessage)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent underline-offset-4 hover:underline"
+              >
+                Chat sekarang
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <a
+          href={whatsappLink(askMessage)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-primary text-primary-foreground hover:bg-accent mt-9 inline-flex min-h-12 items-center rounded-[var(--radius-control)] px-6 text-sm font-semibold transition-colors duration-150"
+        >
+          Konsultasi via WhatsApp
+        </a>
+      </Section>
     </main>
   );
 }

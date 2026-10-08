@@ -2,7 +2,6 @@ import Link from "next/link";
 import { siteConfig } from "@/lib/site";
 
 const navLinks = [
-  { href: "/", label: "Beranda" },
   { href: "/katalog", label: "Katalog" },
   { href: "/tentang", label: "Tentang" },
   { href: "/kontak", label: "Kontak" },
@@ -10,12 +9,16 @@ const navLinks = [
 
 export function Navbar() {
   return (
-    <header className="border-border bg-background/90 sticky top-0 z-50 border-b backdrop-blur">
+    <header className="border-border bg-card sticky top-0 z-50 border-b">
       <nav
         aria-label="Navigasi utama"
-        className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-6"
+        className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-4 sm:px-6"
       >
-        <Link href="/" className="text-primary text-lg font-bold tracking-tight">
+        <Link
+          href="/"
+          className="text-primary text-lg font-semibold tracking-tight"
+          aria-label={`${siteConfig.name} — beranda`}
+        >
           {siteConfig.name}
         </Link>
 
@@ -24,7 +27,7 @@ export function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="text-muted hover:bg-surface hover:text-foreground rounded-md px-3 py-2 text-sm font-medium transition-colors"
+                className="text-muted-foreground hover:text-foreground hover:bg-muted inline-flex min-h-11 items-center rounded-[var(--radius-control)] px-3 py-2 text-sm font-medium transition-colors duration-150"
               >
                 {link.label}
               </Link>

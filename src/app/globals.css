@@ -3,41 +3,79 @@
 /*
  * Design tokens — KonveksiKampus
  *
- * Palette: neutral base + a single deep-blue accent (see PRD §8: clean, professional,
- * trustworthy). Values are placeholders pending the client's visual reference; the
- * token *names* are the stable contract, so swapping the values later touches only
- * this file.
+ * Source of truth: DESIGN.md. The token *names* are the stable contract; swap values
+ * only in DESIGN.md and here.
+ *
+ * Direction: Flat Design + Minimalism & Swiss Style (verified via ui-ux-pro-max).
+ * Palette: "Professional navy + blue CTA" (B2B Service) — no gradient, no glow.
  */
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
+  --color-background: #0e0e12;
+  --color-foreground: #f5f5f7;
 
-  --color-surface: #f8fafc;
-  --color-border: #e2e8f0;
-  --color-muted: #64748b;
+  --color-card: #16161c;
+  --color-muted: #1e1e26;
+  --color-muted-foreground: #a1a1b5;
+  --color-border: #2a2a34;
 
-  --color-primary: #1e3a8a; /* deep blue */
+  --color-primary: #e02030;
   --color-primary-foreground: #ffffff;
-  --color-accent: #b91c1c; /* brick red accent */
-  --color-accent-foreground: #ffffff;
+  --color-accent: #f2b90c;
+  --color-accent-foreground: #1a1a1a;
+  --color-destructive: #ef4444;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-surface: var(--color-surface);
-  --color-border: var(--color-border);
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+  --color-card: var(--color-card);
   --color-muted: var(--color-muted);
+  --color-muted-foreground: var(--color-muted-foreground);
+  --color-border: var(--color-border);
   --color-primary: var(--color-primary);
   --color-primary-foreground: var(--color-primary-foreground);
   --color-accent: var(--color-accent);
   --color-accent-foreground: var(--color-accent-foreground);
+  --color-destructive: var(--color-destructive);
 
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-source-sans);
+  --font-heading: var(--font-lexend);
+
+  /* Small, deliberate radius set — not every element is a pill (antislop R-11). */
+  --radius-control: 6px;
+  --radius-surface: 10px;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
+@layer base {
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    line-height: 1.5;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading), system-ui, sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+  /* Visible keyboard focus using the accent ring (accessibility floor). */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: var(--radius-control);
+  }
+
+  /* Respect reduced motion (antislop R-19). */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
