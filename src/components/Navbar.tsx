@@ -33,8 +33,8 @@ export function Navbar() {
             height={36}
             className="h-9 w-9 shrink-0 rounded-[var(--radius-control)]"
           />
-          {/* Wordmark hidden on the smallest screens to guarantee fit. */}
-          <span className="text-foreground hidden truncate text-lg font-semibold tracking-tight min-[400px]:inline">
+          {/* Wordmark in the display face (reference uses a display-face brand). */}
+          <span className="text-foreground font-heading hidden truncate text-xl tracking-wide uppercase min-[420px]:inline">
             {siteConfig.displayName}
           </span>
         </Link>

@@ -10,26 +10,24 @@ export function CategoryGrid({ categories }: { categories: Category[] }) {
   if (categories.length === 0) return null;
 
   return (
-    <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+    <ul className="grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3 lg:grid-cols-5">
       {categories.map((category) => (
         <li key={category.id}>
-          <Link
-            href={`/kategori/${category.slug}`}
-            className="border-border bg-card hover:border-accent/60 group block overflow-hidden rounded-[var(--radius-surface)] border transition-colors duration-200"
-          >
-            <div className="bg-muted relative aspect-[4/3]">
+          <Link href={`/kategori/${category.slug}`} className="group block">
+            <div className="bg-specimen border-plate-border relative aspect-[4/5] overflow-hidden rounded-[2px] border">
               <ProductImage
                 src={category.image ?? "/images/products/jacket-varsity.webp"}
                 alt={`Produk ${category.name}`}
-                sizes="(max-width: 640px) 50vw, 25vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                sizes="(max-width: 640px) 50vw, 20vw"
               />
             </div>
-            <div className="p-4">
-              <h3 className="text-foreground group-hover:text-accent font-medium transition-colors">
+            <div className="mt-3">
+              <h3 className="text-foreground group-hover:text-primary-text font-heading text-lg tracking-wide uppercase transition-colors">
                 {category.name}
               </h3>
               {category.forWhom ? (
-                <p className="text-muted-foreground mt-1 text-sm">{category.forWhom}</p>
+                <p className="text-muted-foreground mt-0.5 text-sm">{category.forWhom}</p>
               ) : null}
             </div>
           </Link>

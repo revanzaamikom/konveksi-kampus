@@ -18,11 +18,10 @@ export function MaterialsList({ materials }: { materials: Material[] }) {
           material.recommendedFor;
 
         return (
-          <li
-            key={material.id}
-            className="border-border bg-card rounded-[var(--radius-surface)] border p-5"
-          >
-            <h3 className="text-foreground font-medium">{material.name}</h3>
+          <li key={material.id} className="border-border border-t pt-4">
+            <h3 className="text-foreground font-heading text-lg tracking-wide uppercase">
+              {material.name}
+            </h3>
             {hasSpecs ? (
               <dl className="text-muted-foreground mt-3 space-y-2 text-sm">
                 {material.character ? <dd>{material.character}</dd> : null}

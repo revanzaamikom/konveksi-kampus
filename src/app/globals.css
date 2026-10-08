@@ -6,16 +6,19 @@
  * Source of truth: DESIGN.md. The token *names* are the stable contract; swap values
  * only in DESIGN.md and here.
  *
- * Direction: Flat Design + Minimalism & Swiss Style (verified via ui-ux-pro-max).
- * Palette: "Professional navy + blue CTA" (B2B Service) — no gradient, no glow.
+ * Direction: premium industrial specimen catalogue (reference-pinned: Modevo composition,
+ * client's own palette from the logo). Ground is pure black to match the product photos.
  */
 :root {
-  --color-background: #0e0e12;
+  --color-background: #000000;
   --color-foreground: #f5f5f7;
+  /* Image plate — a hair lighter than the page so photo panels read as deliberate frames. */
+  --color-specimen: #141418;
+  --color-plate-border: #34343e;
 
-  --color-card: #16161c;
+  --color-card: #0c0c0f;
   --color-muted: #1e1e26;
-  --color-muted-foreground: #a1a1b5;
+  --color-muted-foreground: #b4b4c4;
   --color-border: #2a2a34;
 
   --color-primary: #e02030;
@@ -32,6 +35,8 @@
 @theme inline {
   --color-background: var(--color-background);
   --color-foreground: var(--color-foreground);
+  --color-specimen: var(--color-specimen);
+  --color-plate-border: var(--color-plate-border);
   --color-card: var(--color-card);
   --color-muted: var(--color-muted);
   --color-muted-foreground: var(--color-muted-foreground);
@@ -44,12 +49,11 @@
   --color-accent-foreground: var(--color-accent-foreground);
   --color-destructive: var(--color-destructive);
 
-  --font-sans: var(--font-plex-sans);
-  --font-heading: var(--font-plex-condensed);
-  --font-mono: var(--font-plex-mono);
+  --font-sans: var(--font-instrument);
+  --font-heading: var(--font-anton);
 
   /* Small, deliberate radius set — not every element is a pill (antislop R-11). */
-  --radius-control: 6px;
+  --radius-control: 999px;
   --radius-surface: 10px;
 }
 
@@ -66,31 +70,43 @@
     line-height: 1.5;
     /* Long unbroken strings (e.g. product lists) should wrap, not overflow. */
     overflow-wrap: break-word;
+    /* Reserve space for the mobile sticky WhatsApp bar so it never covers the footer. */
+    padding-bottom: 5rem;
+  }
+
+  @media (min-width: 640px) {
+    body {
+      padding-bottom: 0;
+    }
   }
 
   h1,
   h2,
   h3 {
     font-family: var(--font-heading), system-ui, sans-serif;
-    letter-spacing: -0.01em;
-    line-height: 1.15;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: 0.92;
   }
 
-  /* Fluid display headline (foundation §7). Floor readable at 320px, ceiling sane on ultrawide. */
+  /* Giant editorial display headline (reference: Modevo's Anton titles). Fluid, not 142px. */
   .text-display {
     font-family: var(--font-heading), system-ui, sans-serif;
-    font-size: clamp(2rem, 1.2rem + 3.6vw, 3.75rem);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    font-weight: 600;
-    text-wrap: balance;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: clamp(2.5rem, 1.2rem + 5.2vw, 5.5rem);
+    line-height: 0.92;
+    letter-spacing: 0.005em;
   }
 
-  /* Monospace for spec values / quantities (industrial register). */
-  .font-spec {
-    font-family: var(--font-mono), ui-monospace, monospace;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.01em;
+  /* Section heading scale. */
+  .text-display-sm {
+    font-family: var(--font-heading), system-ui, sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: clamp(2rem, 1rem + 4.5vw, 4.5rem);
+    line-height: 0.94;
   }
 
   /* Visible keyboard focus using the accent ring (accessibility floor). */
@@ -109,5 +125,48 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+    /* Ensure revealed content is visible when motion is reduced. */
+    [data-reveal] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+}
+
+/*
+ * Scroll reveal — mirrors the reference's fade/slide-up-on-scroll.
+ * Applied by src/components/Reveal.tsx via IntersectionObserver (no scroll listeners).
+ * Elements start hidden only when JS is present (progressive enhancement).
+ */
+[data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal][data-revealed="true"] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Marquee — the reference runs a continuous logo/text strip. */
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
   }
 }

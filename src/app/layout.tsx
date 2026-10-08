@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, IBM_Plex_Sans, IBM_Plex_Sans_Condensed } from "next/font/google";
+import { Anton, Instrument_Sans } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { StickyWhatsApp } from "@/components/StickyWhatsApp";
@@ -7,28 +7,21 @@ import { hasCanonicalUrl, siteConfig } from "@/lib/site";
 import "./globals.css";
 
 /**
- * Typography — IBM Plex superfamily (see DESIGN.md).
- * Register: industrial/technical + editorial. One superfamily = guaranteed harmony.
- * Only the weights actually used are loaded.
+ * Typography — reference-pinned (Modevo uses Anton + Instrument Sans).
+ * Display: Anton (condensed, uppercase, oversized). UI/body: Instrument Sans.
+ * See docs/DIRECTION-CONTRACT.md.
  */
-const plexSans = IBM_Plex_Sans({
-  variable: "--font-plex-sans",
+const anton = Anton({
+  variable: "--font-anton",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
+
+const instrumentSans = Instrument_Sans({
+  variable: "--font-instrument",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
-
-const plexCondensed = IBM_Plex_Sans_Condensed({
-  variable: "--font-plex-condensed",
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  display: "swap",
-});
-
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-plex-mono",
-  subsets: ["latin"],
-  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -74,10 +67,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="id"
-      className={`${plexSans.variable} ${plexCondensed.variable} ${plexMono.variable} h-full antialiased`}
-    >
+    <html lang="id" className={`${anton.variable} ${instrumentSans.variable} h-full antialiased`}>
       <body className="bg-background text-foreground flex min-h-full flex-col">
         <Navbar />
         {children}

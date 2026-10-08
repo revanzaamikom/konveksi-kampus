@@ -5,6 +5,7 @@ const message = `Halo ${siteConfig.displayName}, saya ingin konsultasi pembuatan
 /**
  * Sticky WhatsApp CTA for mobile (foundation §19: mobile conversion is a priority).
  * Hidden on >=sm to avoid covering content on larger screens, where CTAs are already visible.
+ * The body gets matching bottom padding (see globals.css) so this never covers the footer.
  */
 export function StickyWhatsApp() {
   return (

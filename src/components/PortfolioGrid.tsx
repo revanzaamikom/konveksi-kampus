@@ -9,25 +9,22 @@ export function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
   if (items.length === 0) return null;
 
   return (
-    <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <ul className="grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
       {items.map((item) => (
-        <li
-          key={item.id}
-          className="border-border bg-card overflow-hidden rounded-[var(--radius-surface)] border"
-        >
-          <div className="bg-muted relative aspect-[4/3]">
+        <li key={item.id}>
+          <div className="bg-specimen border-plate-border relative aspect-[4/5] overflow-hidden rounded-[2px] border">
             <ProductImage
               src={item.images[0]?.src ?? ""}
               alt={item.images[0]?.alt ?? item.title}
               sizes="(max-width: 640px) 100vw, 33vw"
             />
           </div>
-          <div className="p-5">
-            <p className="text-accent text-xs font-semibold tracking-wide uppercase">
+          <div className="mt-3">
+            <p className="text-accent font-heading text-xs tracking-[0.15em] uppercase">
               {item.productType}
             </p>
             <h3 className="text-foreground mt-1 font-medium">{item.title}</h3>
-            <dl className="text-muted-foreground mt-3 space-y-1 text-sm">
+            <dl className="text-muted-foreground mt-2 space-y-1 text-sm">
               {item.clientCategory ? (
                 <div className="flex gap-2">
                   <dt className="text-foreground/60">Untuk</dt>
