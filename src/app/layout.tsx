@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Lexend, Source_Sans_3 } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
-import { assetPath, siteConfig } from "@/lib/site";
+import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
 const lexend = Lexend({
@@ -17,7 +17,7 @@ const sourceSans = Source_Sans_3({
   display: "swap",
 });
 
-const ogImage = assetPath("/brand/og-image.jpg");
+const ogImage = "/brand/og-image.jpg";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -26,13 +26,18 @@ export const metadata: Metadata = {
     template: `%s — ${siteConfig.displayName}`,
   },
   description: siteConfig.description,
+  /*
+   * Metadata URLs are resolved against metadataBase (the canonical production domain),
+   * so they must be plain root-relative paths — NOT prefixed with the GitHub Pages
+   * basePath. assetPath() is only for <img src> in the components.
+   */
   icons: {
     icon: [
-      { url: assetPath("/brand/favicon-32x32.png"), sizes: "32x32", type: "image/png" },
-      { url: assetPath("/brand/favicon-16x16.png"), sizes: "16x16", type: "image/png" },
-      { url: assetPath("/brand/favicon.ico"), sizes: "any" },
+      { url: "/brand/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/brand/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/brand/favicon.ico", sizes: "any" },
     ],
-    apple: [{ url: assetPath("/brand/apple-touch-icon.png"), sizes: "180x180" }],
+    apple: [{ url: "/brand/apple-touch-icon.png", sizes: "180x180" }],
   },
   openGraph: {
     type: "website",
