@@ -86,25 +86,22 @@ export default async function Home() {
       <section className="border-border relative overflow-hidden border-b">
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:py-24">
           <div>
-            <p className="font-spec text-accent text-xs font-medium tracking-[0.18em] uppercase">
-              Vendor Konveksi Yogyakarta · Sejak 2012
-            </p>
-            <h1 className="text-display text-foreground mt-4">
+            <h1 className="text-display text-foreground">
               Konveksi Custom untuk Seragam &amp; Apparel
             </h1>
-            <p className="font-spec text-muted-foreground mt-5 text-sm">
-              PDH · PDL · KORSA · JAKET · POLO · KAOS · ALMAMATER · WEARPACK
-            </p>
             <p className="text-muted-foreground mt-5 max-w-xl text-lg">
               Produksi apparel custom untuk organisasi, kampus, komunitas, dan kebutuhan profesional
-              — dikerjakan sesuai spesifikasi Anda.
+              — vendor konveksi Yogyakarta sejak 2012.
+            </p>
+            <p className="font-spec text-muted-foreground mt-5 text-sm">
+              PDH · PDL · Korsa · Jaket · Polo · Kaos · Almamater · Wearpack
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href={whatsappLink(heroMessage)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-primary text-primary-foreground hover:bg-accent inline-flex min-h-12 items-center rounded-[var(--radius-control)] px-6 text-sm font-semibold transition-colors duration-150"
+                className="bg-primary text-primary-foreground hover:bg-primary-hover inline-flex min-h-12 items-center rounded-[var(--radius-control)] px-6 text-sm font-semibold transition-colors duration-150"
               >
                 Konsultasi via WhatsApp
               </a>

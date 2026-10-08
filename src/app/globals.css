@@ -20,6 +20,10 @@
 
   --color-primary: #e02030;
   --color-primary-foreground: #ffffff;
+  /* Darker red for the hover state — keeps white text accessible (5.6:1). */
+  --color-primary-hover: #b8121f;
+  /* Readable tint of the brand red for TEXT on the dark ground (red #e02030 only hits 4.05:1). */
+  --color-primary-text: #ff6b75;
   --color-accent: #f2b90c;
   --color-accent-foreground: #1a1a1a;
   --color-destructive: #ef4444;
@@ -34,6 +38,8 @@
   --color-border: var(--color-border);
   --color-primary: var(--color-primary);
   --color-primary-foreground: var(--color-primary-foreground);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-primary-text: var(--color-primary-text);
   --color-accent: var(--color-accent);
   --color-accent-foreground: var(--color-accent-foreground);
   --color-destructive: var(--color-destructive);

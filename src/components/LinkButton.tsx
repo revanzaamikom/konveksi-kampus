@@ -7,7 +7,7 @@ const base =
   "inline-flex min-h-11 items-center justify-center rounded-[var(--radius-control)] px-6 text-sm font-semibold transition-colors duration-150";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-primary text-primary-foreground hover:bg-accent",
+  primary: "bg-primary text-primary-foreground hover:bg-primary-hover",
   secondary: "border-border text-foreground hover:bg-muted border",
 };
 
