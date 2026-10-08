@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ProductImage } from "@/components/ProductImage";
 import { getCategories } from "@/lib/content/categories";
 import { getProductBySlug, getProducts } from "@/lib/content/products";
 import { siteConfig, whatsappLink } from "@/lib/site";
@@ -71,13 +72,19 @@ export default async function ProductDetailPage({ params }: PageProps) {
       <div className="mt-8 grid gap-10 lg:grid-cols-2">
         {/* Gallery */}
         <div className="space-y-4">
-          {product.images.map((image) => (
+          {product.images.map((image, index) => (
             <figure
               key={image.src}
               className="border-border bg-surface overflow-hidden rounded-xl border"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={image.src} alt={image.alt} className="h-full w-full object-cover" />
+              <div className="relative aspect-[4/3]">
+                <ProductImage
+                  src={image.src}
+                  alt={image.alt}
+                  priority={index === 0}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
               {image.label ? (
                 <figcaption className="text-muted px-4 py-2 text-sm">{image.label}</figcaption>
               ) : null}

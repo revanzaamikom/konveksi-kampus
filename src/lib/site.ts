@@ -27,6 +27,26 @@ export const siteConfig = {
 
 export type SiteConfig = typeof siteConfig;
 
+/**
+ * Base path the site is served from.
+ *
+ * Empty on Netlify / local dev (served from root). Set to "/konveksi-kampus" for the
+ * GitHub Pages build, where the site lives under a repo subpath. Mirrors next.config.ts.
+ */
+export const basePath = process.env.GITHUB_PAGES === "true" ? "/konveksi-kampus" : "";
+
+/**
+ * Prefix a public asset path with the base path.
+ *
+ * Needed because next/image does NOT apply basePath when `unoptimized: true`
+ * (static export), so `/images/...` must be resolved manually.
+ */
+export function assetPath(path: string): string {
+  if (!path) return path;
+  if (!path.startsWith("/")) return path;
+  return `${basePath}${path}`;
+}
+
 /** Build a WhatsApp deep-link with a prefilled message. */
 export function whatsappLink(message: string): string {
   const base = `https://wa.me/${siteConfig.whatsappNumber}`;

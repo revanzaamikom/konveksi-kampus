@@ -8,14 +8,14 @@ Current phase: **Standard** (public catalog). See `PRD.md` for the package roadm
 
 ## Documents
 
-| File             | Purpose                                                 |
-| ---------------- | ------------------------------------------------------- |
-| `PRD.md`         | Product source of truth (requirements, tiers, scope)    |
-| `TECH_SPEC.md`   | Stack, architecture, data model, tooling                |
-| `AGENTS.md`      | Rules for AI coding agents working on this repo         |
-| `GLOSSARY.md`    | Domain + technical vocabulary                           |
-| `docs/adr/`      | Architecture decision records                           |
-| `docs/DEPLOY.md` | Preview (cloudflared) & production (Netlify) deployment |
+| File             | Purpose                                                  |
+| ---------------- | -------------------------------------------------------- |
+| `PRD.md`         | Product source of truth (requirements, tiers, scope)     |
+| `TECH_SPEC.md`   | Stack, architecture, data model, tooling                 |
+| `AGENTS.md`      | Rules for AI coding agents working on this repo          |
+| `GLOSSARY.md`    | Domain + technical vocabulary                            |
+| `docs/adr/`      | Architecture decision records                            |
+| `docs/DEPLOY.md` | Preview (GitHub Pages) & production (Netlify) deployment |
 
 ## Stack
 
@@ -49,8 +49,10 @@ Business phase (files → database) without touching the UI.
 
 ## Preview & deploy
 
-- Preview to client: `cloudflared tunnel --url http://localhost:3000`
-- Production: Netlify (static export from `out/`)
+- **Client preview (permanent):** GitHub Pages — `https://revanzaamikom.github.io/konveksi-kampus/`
+  Auto-deploys on push to `main` via `.github/workflows/deploy-pages.yml`. No laptop needed.
+- **Production:** Netlify — static export from `out/`.
+- **Quick local sharing:** `scripts/preview.ps1` (cloudflared tunnel).
 
 See `docs/DEPLOY.md`.
 

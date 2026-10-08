@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ProductImage } from "@/components/ProductImage";
 import { getCategories } from "@/lib/content/categories";
 import { getProducts } from "@/lib/content/products";
 import { siteConfig } from "@/lib/site";
@@ -74,13 +75,11 @@ export default async function Home() {
             {featured.map((product) => (
               <li key={product.id}>
                 <Link href={`/katalog/${product.slug}`} className="group block">
-                  <div className="border-border bg-background aspect-[4/3] overflow-hidden rounded-lg border">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={product.images[0]?.src}
+                  <div className="border-border bg-background relative aspect-[4/3] overflow-hidden rounded-lg border">
+                    <ProductImage
+                      src={product.images[0]?.src ?? ""}
                       alt={product.images[0]?.alt ?? product.name}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                      className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                     />
                   </div>
                   <h3 className="mt-3 font-medium">{product.name}</h3>

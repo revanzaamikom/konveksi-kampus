@@ -1,0 +1,68 @@
+# Build the static export and publish it to GitHub Pages.
+#
+# This gives the client a permanent, always-on preview URL — no laptop required.
+# Production still goes to Netlify (see docs/DEPLOY.md / netlify.toml).
+#
+# After the first successful run:
+#   Settings → Pages → Source = "GitHub Actions"
+# URL: https://revanzaamikom.github.io/konveksi-kampus/
+
+name: Deploy preview (GitHub Pages)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; do not cancel an in-progress run.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (static export with Pages basePath)
+        env:
+          GITHUB_PAGES: "true"
+        run: npm run build
+
+      - name: Disable Jekyll (so _next/ is served)
+        run: touch out/.nojekyll
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
