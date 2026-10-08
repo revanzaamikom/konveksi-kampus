@@ -162,17 +162,29 @@
   transform: none;
 }
 
-/* Direction variants (Larose slide-in; conductor stagger keeps delay in CSS var). */
+/* Direction variants (Larose slide-in; conductor stagger keeps delay in CSS var).
+ * Small screens use a shallow offset so the pre-reveal transform never pokes
+ * past the viewport edge (which would create horizontal scroll). */
 [data-reveal-left] {
-  transform: translate3d(-48px, 12px, 0) scale(0.99);
+  transform: translate3d(-40px, 12px, 0) scale(0.99);
 }
 
 [data-reveal-right] {
-  transform: translate3d(48px, 12px, 0) scale(0.99);
+  transform: translate3d(40px, 12px, 0) scale(0.99);
 }
 
 [data-reveal-scale] {
   transform: scale(0.94) translate3d(0, 16px, 0);
+}
+
+@media (max-width: 639px) {
+  [data-reveal-left] {
+    transform: translate3d(-12px, 16px, 0) scale(0.99);
+  }
+
+  [data-reveal-right] {
+    transform: translate3d(12px, 16px, 0) scale(0.99);
+  }
 }
 
 /* Custom options: per-item underline sweep on hover (micro-interaction). */
@@ -256,16 +268,36 @@
   transform: translate3d(0, 108%, 0);
 }
 
-/* ---- Image reveal: clip-path wipe in (plates) ----
- * Hidden only when JS arms it via [data-clip] (progressive enhancement). */
+/* ---- Image reveal (plates/cards) ----
+ * Hidden only when JS arms it via [data-clip] (progressive enhancement).
+ * Mobile: fade + rise (a one-screen-tall card finishes cleanly).
+ * Desktop (>=768px): clip-path wipe from the bottom, per the reference. */
 [data-clip] {
-  clip-path: inset(0 0 100% 0);
-  transition: clip-path 0.9s var(--ease-out-expo);
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition-property: opacity, transform;
+  transition-duration: 0.6s;
+  transition-timing-function: var(--ease-out-expo);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
 [data-clip][data-revealed="true"] {
-  clip-path: inset(0 0 0 0);
+  opacity: 1;
+  transform: none;
+}
+
+@media (min-width: 768px) {
+  [data-clip] {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0 0 100% 0);
+    transition-property: clip-path;
+    transition-duration: 0.9s;
+  }
+
+  [data-clip][data-revealed="true"] {
+    clip-path: inset(0 0 0 0);
+  }
 }
 
 /* ---- Card overlay: info slides up on hover (a-6/a-7) ----

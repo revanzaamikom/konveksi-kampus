@@ -40,6 +40,10 @@ export function Scrub({
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+    // Horizontal travel reads as jitter on phones and can poke past the edge
+    // (the big display type already fills the width), so disable slide there.
+    const slideScale = window.innerWidth < 768 ? 0 : 1;
+
     let visible = false;
     let pending = false;
 
@@ -55,7 +59,8 @@ export function Scrub({
         return;
       }
       if (mode === "slide") {
-        const x = from + (to - from) * p;
+        if (!slideScale) return;
+        const x = (from + (to - from) * p) * slideScale;
         el.style.transform = `translate3d(${x.toFixed(2)}px, 0, 0)`;
         return;
       }

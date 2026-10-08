@@ -14,6 +14,7 @@ export function ProcessList({ steps }: { steps: ProcessStep[] }) {
         <Reveal
           as="li"
           key={step.id}
+          once
           delay={(index % 3) * 110}
           variant={index === 0 ? "left" : index === 2 ? "right" : "up"}
           className="process-step border-border border-t pt-6"

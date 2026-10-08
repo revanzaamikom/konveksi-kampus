@@ -110,7 +110,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
           {/* Gallery */}
           <div className="space-y-4">
             {product.images.map((image, index) => (
-              <Reveal key={image.src} clip delay={Math.min(index, 3) * 110}>
+              <Reveal key={image.src} clip once delay={Math.min(index, 3) * 110}>
                 <figure className="border-border bg-card overflow-hidden rounded-[var(--radius-surface)] border">
                   <div className="bg-muted relative aspect-[4/3]">
                     <ProductImage

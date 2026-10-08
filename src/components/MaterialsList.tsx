@@ -22,6 +22,7 @@ export function MaterialsList({ materials }: { materials: Material[] }) {
           <Reveal
             as="li"
             key={material.id}
+            once
             delay={(index % 4) * 90}
             className="border-border border-t pt-4"
           >

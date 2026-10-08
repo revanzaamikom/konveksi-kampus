@@ -104,7 +104,7 @@ export default async function CategoryPage({ params }: PageProps) {
         {products.length > 0 ? (
           <ul className="mt-9 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {products.map((product, index) => (
-              <Reveal as="li" key={product.id} clip delay={(index % 3) * 100}>
+              <Reveal as="li" key={product.id} clip once delay={(index % 3) * 100}>
                 <ProductCard product={product} />
               </Reveal>
             ))}

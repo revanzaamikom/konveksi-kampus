@@ -17,6 +17,9 @@ export function Parallax({
     const el = ref.current;
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Parallax is a desktop depth cue; on phones the plates nearly fill the
+    // viewport, so the drift just looks like misalignment. Skip it under 768px.
+    if (window.matchMedia("(max-width: 767px)").matches) return;
     let raf = 0;
     let cur = 0;
     let visible = false;

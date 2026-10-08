@@ -11,7 +11,7 @@ export function FaqList({ items }: { items: FaqItem[] }) {
   return (
     <div className="divide-border border-border divide-y border-y">
       {items.map((item, index) => (
-        <Reveal key={item.id} delay={Math.min(index, 5) * 60}>
+        <Reveal key={item.id} once delay={Math.min(index, 5) * 60}>
           <details className="group">
             <summary className="text-foreground flex cursor-pointer list-none items-center justify-between gap-4 py-4 font-medium [&::-webkit-details-marker]:hidden">
               <span>{item.question}</span>

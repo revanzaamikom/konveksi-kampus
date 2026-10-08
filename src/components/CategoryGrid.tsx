@@ -17,6 +17,7 @@ export function CategoryGrid({ categories }: { categories: Category[] }) {
           as="li"
           key={category.id}
           clip
+          once
           delay={(index % 5) * 80}
           className={
             index % 5 === 2 ? "lg:translate-y-10" : index % 5 === 4 ? "lg:translate-y-20" : ""

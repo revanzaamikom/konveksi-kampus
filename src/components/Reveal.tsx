@@ -20,6 +20,7 @@ export function Reveal({
   clip = false,
   variant = "up",
   trigger = "lazy",
+  once = false,
 }: {
   children: ReactNode;
   as?: ElementType;
@@ -32,6 +33,8 @@ export function Reveal({
   variant?: "up" | "left" | "right" | "scale";
   /** eager: hero/strip (no top inset). lazy: below fold (small inset). */
   trigger?: "eager" | "lazy";
+  /** once: reveal on entry and stay (no exit animation). Best for tall grid cards. */
+  once?: boolean;
 }) {
   const ref = useRef<HTMLElement>(null);
 
@@ -52,7 +55,11 @@ export function Reveal({
       return;
     }
 
-    if (delay) el.style.setProperty("--reveal-delay", `${delay}ms`);
+    // Stagger is a desktop affordance — on small screens a delay just makes the
+    // (already tall) cards arrive late, so collapse it to a single quick beat.
+    const isMobile = window.innerWidth < 640;
+    const effectiveDelay = isMobile ? Math.min(delay, 120) : delay;
+    if (effectiveDelay) el.style.setProperty("--reveal-delay", `${effectiveDelay}ms`);
 
     const eager = trigger === "eager";
     let outTimer: ReturnType<typeof setTimeout> | null = null;
@@ -86,7 +93,7 @@ export function Reveal({
           outTimer = null;
         }
         revealNow();
-      } else {
+      } else if (!once) {
         // Animate back out shortly after leaving, so re-entry replays cleanly.
         arm();
         outTimer = setTimeout(() => {
@@ -121,7 +128,7 @@ export function Reveal({
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [delay, clip, variant, trigger]);
+  }, [delay, clip, variant, trigger, once]);
 
   return (
     <As ref={ref} className={className}>

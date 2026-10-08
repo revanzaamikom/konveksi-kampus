@@ -271,6 +271,7 @@ export default async function Home() {
           {valuePoints.map((point, index) => (
             <Reveal
               key={point.title}
+              once
               delay={index * 120}
               variant={index === 0 ? "left" : index === 2 ? "right" : "up"}
             >
@@ -292,7 +293,7 @@ export default async function Home() {
           <ul className="mt-12 grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((product, index) => (
               <li key={product.id}>
-                <Reveal clip delay={(index % 3) * 120}>
+                <Reveal clip once delay={(index % 3) * 120}>
                   <ProductCard product={product} />
                 </Reveal>
               </li>
@@ -351,6 +352,7 @@ export default async function Home() {
             <Reveal
               as="li"
               key={option}
+              once
               delay={(i % 5) * 70}
               variant={i % 2 === 0 ? "left" : "right"}
             >
