@@ -349,30 +349,43 @@ export default async function Home() {
         </Section>
       ) : null}
 
-      {/* 6. EDITORIAL STATEMENT — a large-scale pause between image sections (pacing). */}
+      {/* 6. EDITORIAL STATEMENT — a large-scale pause between image sections (pacing).
+          Left: the claim. Right: a numbered index of what a spec covers, so the
+          block is not a lonely left-aligned paragraph on a wide empty ground. */}
       <section className="border-border bg-card overflow-hidden border-y">
-        <div className="mx-auto w-full max-w-4xl px-4 py-24 sm:px-6 sm:py-32">
-          <Scrub mode="rise" amount={0.08}>
-            <p className="text-display-sm text-foreground text-balance">
-              Setiap pesanan dikerjakan dari spesifikasi yang Anda tentukan sendiri.
-            </p>
-          </Scrub>
-          <Scrub mode="rise" amount={0.05}>
-            <p className="text-muted-foreground mt-8 max-w-2xl">
-              Setiap pesanan dikerjakan dari spesifikasi yang disepakati: bahan, ukuran, warna, dan
-              penempatan bordir atau sablon.
-            </p>
-          </Scrub>
+        <div className="mx-auto grid w-full max-w-5xl gap-10 px-4 py-24 sm:px-6 sm:py-32 lg:grid-cols-[1.4fr_1fr] lg:items-end lg:gap-16">
+          <div>
+            <Scrub mode="rise" amount={0.08}>
+              <p className="text-foreground type-h2 text-balance">
+                Setiap pesanan dikerjakan dari spesifikasi yang Anda tentukan sendiri.
+              </p>
+            </Scrub>
+            <Scrub mode="rise" amount={0.05}>
+              <p className="type-lead text-muted-foreground mt-8 max-w-prose">
+                Setiap pesanan dikerjakan dari spesifikasi yang disepakati: bahan, ukuran, warna,
+                dan penempatan bordir atau sablon.
+              </p>
+            </Scrub>
+          </div>
+          <ol className="border-border flex flex-col gap-4 border-t pt-6 lg:pt-8">
+            {["Bahan", "Ukuran", "Warna", "Bordir / sablon"].map((item, i) => (
+              <li key={item} className="flex items-baseline gap-4">
+                <span className="type-overline text-accent">{`0${i + 1}`}</span>
+                <span className="type-body text-foreground">{item}</span>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
       {/* 7. CUSTOMIZATION — full-bleed feel, large type list (no boxes) */}
       <Section className="pb-24">
         <Reveal variant="right">
-          <h2 className="text-display-sm text-foreground max-w-3xl">Bisa Dikustomisasi</h2>
+          <p className="type-overline text-accent">Kustomisasi</p>
+          <h2 className="text-foreground type-h2 mt-3 max-w-3xl">Bisa Dikustomisasi</h2>
         </Reveal>
         <Reveal delay={110} variant="left">
-          <p className="text-muted-foreground mt-5 max-w-2xl">
+          <p className="type-lead text-muted-foreground mt-5 max-w-prose">
             Sesuaikan detail berikut dengan kebutuhan Anda, dari model sampai penempatan bordir.
           </p>
         </Reveal>
@@ -385,7 +398,9 @@ export default async function Home() {
               delay={(i % 5) * 70}
               variant={i % 2 === 0 ? "left" : "right"}
             >
-              <span className="custom-item text-foreground font-heading text-xl tracking-wide uppercase">
+              <span
+                className={`custom-item type-h3 ${i % 5 === 0 ? "text-primary-text" : "text-foreground"}`}
+              >
                 {option}
               </span>
             </Reveal>
@@ -397,8 +412,9 @@ export default async function Home() {
       {materials.length > 0 ? (
         <Section className="pb-24">
           <Reveal variant="scale">
-            <h2 className="text-display-sm text-foreground">Bahan</h2>
-            <p className="text-muted-foreground mt-5 max-w-2xl">
+            <p className="type-overline text-accent">Material</p>
+            <h2 className="text-foreground type-h2 mt-3">Bahan</h2>
+            <p className="type-lead text-muted-foreground mt-5 max-w-prose">
               Kami bantu rekomendasikan bahan sesuai penggunaan dan kebutuhan Anda.
             </p>
           </Reveal>
@@ -414,8 +430,9 @@ export default async function Home() {
       {processSteps.length > 0 ? (
         <Section className="pb-24">
           <Reveal variant="left">
-            <h2 className="text-display-sm text-foreground">Alur Pemesanan</h2>
-            <p className="text-muted-foreground mt-5 max-w-2xl">
+            <p className="type-overline text-accent">Alur</p>
+            <h2 className="text-foreground type-h2 mt-3">Alur Pemesanan</h2>
+            <p className="type-lead text-muted-foreground mt-5 max-w-prose">
               Dari konsultasi sampai pengiriman, begini prosesnya.
             </p>
           </Reveal>
@@ -467,7 +484,8 @@ export default async function Home() {
       {faqItems.length > 0 ? (
         <Section className="pb-24">
           <Reveal variant="right">
-            <h2 className="text-display-sm text-foreground">Pertanyaan Umum</h2>
+            <p className="type-overline text-accent">FAQ</p>
+            <h2 className="text-foreground type-h2 mt-3">Pertanyaan Umum</h2>
           </Reveal>
           <Reveal delay={110}>
             <div className="mt-10 max-w-3xl">
@@ -482,10 +500,8 @@ export default async function Home() {
       <section className="bg-primary text-primary-foreground overflow-hidden">
         <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
           <Reveal variant="scale">
-            <h2 className="text-display-sm max-w-4xl">
-              Mulai dari mana? Kirim detail kebutuhan Anda.
-            </h2>
-            <p className="mt-6 max-w-xl text-lg opacity-85">
+            <h2 className="type-h2 max-w-4xl">Mulai dari mana? Kirim detail kebutuhan Anda.</h2>
+            <p className="type-lead mt-6 max-w-xl opacity-85">
               Sampaikan jenis produk, jumlah, dan deadline. Kami bantu dari penentuan spesifikasi
               hingga produksi.
             </p>

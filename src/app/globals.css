@@ -133,6 +133,77 @@
     line-height: 1.2;
   }
 
+  /*
+   * TYPE SCALE — role-based tokens (typography-scale-builder / typography-expert).
+   * Each role bundles size + line-height + tracking + weight + family, so a
+   * component asks for a role, never a raw px. Line-height tightens as size
+   * grows (body 1.6 → display 1.2); tracking opens on small uppercase, closes
+   * slightly on large display. Fluid `clamp()` keeps every step readable from a
+   * 320px phone to ultrawide. Between the giant display and the old 14px body,
+   * these roles add the missing middle levels (h3/lead/body-lg) that the page
+   * needed for hierarchy.
+   */
+
+  /* Section heading — the display step under `.text-display` (Anton, uppercase). */
+  .type-h2 {
+    font-family: var(--font-heading), system-ui, sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: clamp(2.25rem, 1.35rem + 4.2vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: 0.005em;
+    text-wrap: balance;
+  }
+
+  /* Card / subsection heading (Anton, uppercase) — the mid step. */
+  .type-h3 {
+    font-family: var(--font-heading), system-ui, sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: clamp(1.375rem, 1.1rem + 1vw, 1.75rem);
+    line-height: 1.15;
+    letter-spacing: 0.02em;
+  }
+
+  /* Small label / eyebrow (Instrument Sans, uppercase, wide tracking). */
+  .type-overline {
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    letter-spacing: 0.16em;
+  }
+
+  /* Lead paragraph — one step above body, for intros under a heading. */
+  .type-lead {
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-weight: 400;
+    font-size: clamp(1.0625rem, 0.98rem + 0.35vw, 1.25rem);
+    line-height: 1.6;
+    letter-spacing: 0;
+    text-wrap: pretty;
+  }
+
+  /* Body copy — the reading default (16px floor). */
+  .type-body {
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.6;
+    letter-spacing: 0;
+    text-wrap: pretty;
+  }
+
+  /* Secondary body — dense lists, spec rows, captions that still need to read. */
+  .type-body-sm {
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    letter-spacing: 0;
+  }
+
   /* Visible keyboard focus using the accent ring (accessibility floor). */
   :focus-visible {
     outline: 2px solid var(--color-accent);
@@ -329,6 +400,14 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
+  transition:
+    transform 0.16s ease-out,
+    color 0.2s ease-out;
+}
+
+/* Tactile press feedback (emil-design-eng: buttons must feel responsive). */
+.btn-wipe:active {
+  transform: scale(0.97);
 }
 
 .btn-wipe::before {

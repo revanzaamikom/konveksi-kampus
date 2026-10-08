@@ -26,11 +26,12 @@ export function MaterialsList({ materials }: { materials: Material[] }) {
             delay={(index % 4) * 90}
             className="border-border border-t pt-4"
           >
-            <h3 className="text-foreground font-heading text-lg tracking-wide uppercase">
-              {material.name}
-            </h3>
+            <div className="flex items-baseline gap-3">
+              <span className="type-overline text-accent">{`0${index + 1}`}</span>
+              <h3 className="type-h3 text-foreground">{material.name}</h3>
+            </div>
             {hasSpecs ? (
-              <dl className="text-muted-foreground mt-3 space-y-2 text-sm">
+              <dl className="type-body-sm text-muted-foreground mt-3 space-y-2">
                 {material.character ? <dd>{material.character}</dd> : null}
                 {material.thickness ? (
                   <div className="flex gap-2">

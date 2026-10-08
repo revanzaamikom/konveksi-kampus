@@ -19,13 +19,11 @@ export function ProcessList({ steps }: { steps: ProcessStep[] }) {
           variant={index === 0 ? "left" : index === 2 ? "right" : "up"}
           className="process-step border-border border-t pt-6"
         >
-          <span className="text-primary-text/70 font-heading text-3xl leading-none">
+          <span className="text-accent font-heading text-2xl leading-none tracking-wide">
             {step.step}
           </span>
-          <h3 className="text-foreground font-heading mt-3 text-lg tracking-wide uppercase">
-            {step.title}
-          </h3>
-          <p className="text-muted-foreground mt-1 text-sm">{step.description}</p>
+          <h3 className="type-h3 text-foreground mt-3">{step.title}</h3>
+          <p className="type-body-sm text-muted-foreground mt-1">{step.description}</p>
         </Reveal>
       ))}
     </ol>
