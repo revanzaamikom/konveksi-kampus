@@ -25,12 +25,23 @@ export function CategoryGrid({ categories }: { categories: Category[] }) {
         >
           <Link href={`/kategori/${category.slug}`} className="group block">
             <div className="bg-specimen border-plate-border relative aspect-[3/4] overflow-hidden rounded-[var(--radius-media)] border">
-              <ProductImage
-                src={category.image ?? "/images/products/jacket-varsity.webp"}
-                alt={`Produk ${category.name}`}
-                className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                sizes="(max-width: 640px) 50vw, 20vw"
-              />
+              {category.image ? (
+                <ProductImage
+                  src={category.image}
+                  alt={`Produk ${category.name}`}
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  sizes="(max-width: 640px) 50vw, 20vw"
+                />
+              ) : (
+                /* Neutral category tile — no matching photo yet, so never fake it
+                 * with an unrelated product shot (STANDARD §12). Name sits top-left
+                 * so it never collides with the bottom hover overlay. */
+                <div className="flex h-full items-start p-4">
+                  <span className="font-heading text-foreground/80 text-2xl tracking-wide uppercase">
+                    {category.name}
+                  </span>
+                </div>
+              )}
               {category.forWhom ? (
                 <div className="card-overlay bg-background/85 absolute inset-x-0 bottom-0 p-4 backdrop-blur-sm">
                   <p className="text-foreground text-sm font-medium">Lihat Koleksi →</p>

@@ -16,7 +16,7 @@ const askMessage =
 
 export default function ContactPage() {
   return (
-    <main className="flex flex-1 flex-col">
+    <main id="main" className="flex flex-1 flex-col">
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Beranda", route: "/" },
@@ -79,6 +79,7 @@ export default function ContactPage() {
 
         <Reveal delay={120}>
           <a
+            data-wa-cta
             href={whatsappLink(askMessage)}
             target="_blank"
             rel="noopener noreferrer"

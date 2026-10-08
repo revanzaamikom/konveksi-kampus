@@ -34,4 +34,4 @@ Recorded so the redesign can resume without re-running discovery.
 1. If a dealt card: record the direction contract (six blocks + seed key) in the surface brief.
 2. If the user supplies a reference: read it, derive the world, still keep the locked palette.
 3. Build code-led: first viewport as a thesis, then sections, motion, responsive.
-4. Guide text via `DESIGN.md` (IBM Plex), but re-decide type if the chosen world demands it.
+4. Guide text via `DESIGN.md` (Anton + Instrument Sans), but re-decide type if the chosen world demands it.

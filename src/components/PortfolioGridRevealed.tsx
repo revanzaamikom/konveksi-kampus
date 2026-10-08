@@ -18,7 +18,7 @@ export function PortfolioGridRevealed({ items }: { items: PortfolioItem[] }) {
       {items.map((item, index) => (
         <li key={item.id} className={`group ${offsets[index % 3]}`}>
           <Reveal clip once delay={(index % 3) * 140}>
-            <div className="bg-specimen border-plate-border relative aspect-[3/4] overflow-hidden rounded-[20px] border">
+            <div className="bg-specimen border-plate-border relative aspect-[3/4] overflow-hidden rounded-[var(--radius-media)] border">
               <ProductImage
                 src={item.images[0]?.src ?? ""}
                 alt={item.images[0]?.alt ?? item.title}

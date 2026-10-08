@@ -614,4 +614,118 @@ The goal is to create the right system.
 
 ---
 
+# 31. DO NOT KILL THE 9ROUTER / DEV SERVER
+
+**MANDATORY — never kill the 9router or the running dev server.**
+
+The local dev environment (the `next dev` server on `localhost:3000` and the
+9router process) is a persistent, user-owned resource. It is running for the
+user across sessions.
+
+Rules:
+
+- **Never** run `Stop-Process`, `taskkill`, `Get-Process ... | Stop-Process`, or
+  any process-killing command against `node`, the dev server, or anything named
+  `9router` / `router`, **unless the user explicitly asks to restart it**.
+- **Never** use `Get-Process node | Stop-Process -Force` as a general cleanup
+  step. It kills the user's dev server and 9router.
+- If a port is busy or you think a restart is needed, **ask the user first**.
+- To start something new, use a different port or ask — do not free `3000` by
+  killing the existing process.
+- Only the user decides when the dev server / 9router stops.
+
+Violating this rule interrupts the user's workflow and is treated as a serious
+mistake.
+
+---
+
+# 32. QUALITY BASELINE
+
+`STANDARD.md` is the **master quality baseline** for the Standard website
+(content, UX, conversion, QA, animation, SEO). Read it before large changes and
+treat its "Never Fabricate Data" and checklist rules as binding, together with
+`PRD.md` / `TECH_SPEC.md` / `CLIENT_DATA.md`.
+
+---
+
+# 33. LOAD THE RELEVANT SKILL BEFORE ANY TASK (MANDATORY)
+
+**Before starting any non-trivial task, load the matching skill from
+`.agents/skills/` and follow it.** Do not work from memory. The skills are the
+project's enforced standard, and this rule makes using them automatic.
+
+Map the task to a skill and read its `SKILL.md` (plus referenced files) FIRST:
+
+| Task                                                                                                                                           | Skill                                                                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Writing/editing any prose: headlines, CTAs, product/category copy, FAQ, meta, empty states                                                     | `.agents/skills/antislop-copywriting/SKILL.md`                                                                                                                   |
+| Copy audit / de-slop an existing page                                                                                                          | `.agents/skills/copy-editing/SKILL.md` (+ `references/ai-tells.md`)                                                                                              |
+| New marketing copy from scratch                                                                                                                | `.agents/skills/copywriting/SKILL.md`                                                                                                                            |
+| Any UI / visual work                                                                                                                           | `.agents/skills/antislop/SKILL.md` (core, always) + `antislop-ui`                                                                                                |
+| Full frontend design audit or new surface                                                                                                      | `design/` decision brief first, then: `design-taste-frontend`, `web-design-guidelines`, `ui-ux-pro-max`, `high-end-visual-design`, `minimalist-ui`               |
+| **Font choice / pairing / loading** (typeface selection, web-font loading, `font-display`, variable fonts, licensing, Next.js font setup)      | `better-typography` (rendering, formats, loading) + `brand-typography-systems` (pairing, licensing, personality) + `typography-expert` (register framework)      |
+| **Typography in a component** (headings, hierarchy, line-height, tracking, measure, wrapping, truncation, tabular numbers, underlines, inputs) | `better-typography`                                                                                                                                              |
+| **Type scale / tokens / fluid type** (modular or `clamp()` scale, role tokens, vertical rhythm)                                                | `typography-scale-builder` (+ `better-typography` spacing/sizing)                                                                                                |
+| **Brand system / brand kit / logo / identity / color system / brand guidelines**                                                               | `brand` (guidelines, tokens, asset org), `brand-identity`, `brandkit` (identity deck), `brand-typography-systems`                                                |
+| Design system / tokens / component specs                                                                                                       | `design-system`, `design`                                                                                                                                        |
+| Layout / visual identity / art direction                                                                                                       | `web-design-mastery`, `visual-identity-direction`, `stitch-design-taste`, `emil-design-eng`                                                                      |
+| Mobile / responsive layout                                                                                                                     | `.agents/skills/antislop-layoutmobile/SKILL.md`                                                                                                                  |
+| Accessibility / contrast / keyboard                                                                                                            | `.agents/skills/antislop-human/SKILL.md` + `accessibility-compliance` (+ `fixing-accessibility`, `wcag-audit-patterns` when auditing)                            |
+| Motion / animation                                                                                                                             | `.agents/skills/antislop-ui/SKILL.md` + `impeccable/reference/animate.md` + `phase` (+ `animation-forge`, `improve-animations`, `review-animations` when tuning) |
+| Performance (frontend / Core Web Vitals)                                                                                                       | `performance-and-web-vitals`, `core-web-vitals`, `pagespeed-insights`                                                                                            |
+| SEO / metadata / JSON-LD                                                                                                                       | `.agents/skills/seo-in-nextjs/SKILL.md` (+ `seo-audit`, `seo-images`, `schema`, `llms-txt-generator` as needed)                                                  |
+| Writing code comments                                                                                                                          | `.agents/skills/antislop-code/SKILL.md`                                                                                                                          |
+
+Rules:
+
+- **Read the skill file before the first edit**, not after. State which skill you
+  are applying.
+- `antislop` core is **always** loaded for UI or copy work; it holds the Hard
+  Gate rules (R-02 ban em dash, R-15 CTA, R-16 buzzwords, R-17/18/36 no fakery,
+  R-37 direction). Its Delivery Gate runs before delivery.
+- The AI-tells blacklist is authoritative: no em dash (`—`) in any authored text,
+  no contrast reveals ("bukan X, tapi Y"), no negation lists, no trailing
+  pile-ons, no stock phrases, no fabricated data.
+- If two skills could apply, load both. If none clearly applies, load `antislop`
+  core and proceed.
+- When a skill has `references/` files (e.g. `better-typography/choosing-fonts.md`,
+  `copy-editing/references/ai-tells.md`), read the referenced file the task needs,
+  not just `SKILL.md`.
+
+### Skill sources & install (skills.sh)
+
+- Every skill under `.agents/skills/` comes from **skills.sh**
+  (`npx skills add <owner/repo>`), recorded in `skills-lock.json` at the repo
+  root. `SKILL.md` + `references/` is the Agent Skills format.
+- Primary source repos for this project's design/type/brand work:
+  - `leonxlnx/taste-skill` — `design-taste-frontend`, `high-end-visual-design`,
+    `minimalist-ui`, `industrial-brutalist-ui`, `brandkit`, `stitch-design-taste`,
+    `redesign-existing-projects`, `imagegen-frontend-*`, `full-output-enforcement`.
+  - `nextlevelbuilder/ui-ux-pro-max-skill` — `ui-ux-pro-max`, `design`,
+    `design-system`, `brand`, `ui-styling`, `slides`, `banner-design`.
+  - `vercel-labs/agent-skills` — `web-design-guidelines`,
+    `vercel-react-best-practices`, `vercel-composition-patterns`.
+  - `emilkowalski/skills` — `emil-design-eng`, `animation-vocabulary`,
+    `improve-animations`, `review-animations`, `find-animation-opportunities`.
+  - `boraoztunc/skills` — `better-typography`.
+  - `curiositech/some_claude_skills` — `typography-expert`.
+  - `mike-coulbourn/claude-vibes` — `brand-typography-systems`,
+    `visual-identity-direction`.
+  - `cofoundy/brand-skills` — `brand-identity`.
+  - `miqdadbadjuber/anti-slop` — `antislop`, `antislop-ui`, `antislop-copywriting`,
+    `antislop-human`, `antislop-layoutmobile`, `antislop-code`.
+  - `pbakaus/impeccable` — `impeccable`.
+  - `coreyhaines31/marketingskills` — `copywriting`, `copy-editing`, `cro`,
+    `seo-audit`, `marketing-psychology`, `schema`, `site-architecture`.
+  - `seranking/seo-skills` — `seo-page`, `seo-images`, `seo-schema`, `seo-local`,
+    `seo-technical-audit`, `seo-geo`.
+- To add or update a skill: check `skills-lock.json` first (avoid duplicates),
+  confirm with the user, then `npx skills add <owner/repo>`. **Never download or
+  install a skill from the network without explicit user approval.**
+
+Skipping the skill read and "winging it" is a mistake, the same as fabricating
+data.
+
+---
+
 # END

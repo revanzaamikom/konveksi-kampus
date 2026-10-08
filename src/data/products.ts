@@ -18,7 +18,7 @@ export const products: Product[] = [
     shortDescription: "Kemeja korsa lengan panjang dengan bordir nama dan identitas jurusan.",
     description:
       "Korsa lengan panjang dengan dua kantong dada berpentil, epaulet bahu, dan bordir nama serta identitas jurusan. Cocok untuk kegiatan kampus, himpunan, maupun komunitas.",
-    character: "Formal lapangan — rapi untuk kegiatan resmi maupun harian.",
+    character: "Rapi dipakai untuk kegiatan resmi maupun harian.",
     customization: ["Bordir nama & NIM", "Bordir emblem jurusan", "Kombinasi warna"],
     images: [
       {
@@ -45,7 +45,7 @@ export const products: Product[] = [
     shortDescription: "Jaket lapangan berhood dengan striping reflektif dan bordir logo.",
     description:
       "Jaket lapangan berhood dengan zipper penuh dan striping reflektif pada bagian dada serta lengan. Dilengkapi bordir logo dan teks koordinat pada sisi depan.",
-    character: "Jaket lapangan berhood — fungsional untuk kegiatan outdoor.",
+    character: "Jaket lapangan berhood yang fungsional untuk kegiatan outdoor.",
     customization: ["Bordir logo", "Striping reflektif", "Kombinasi warna"],
     images: [
       {
@@ -66,7 +66,7 @@ export const products: Product[] = [
     shortDescription: "Jaket outdoor berhood dengan kombinasi banyak saku berzipper.",
     description:
       "Jaket outdoor berhood dengan plaket setengah zipper, dua saku dada berzipper beserta flap, dan saku besar di bagian bawah. Dilengkapi tali drawstring yang dapat diatur.",
-    character: "Jaket lapangan dengan saku banyak — praktis untuk mobilitas.",
+    character: "Jacket lapangan dengan saku banyak, praktis untuk mobilitas.",
     customization: ["Bordir logo", "Pilihan warna"],
     colors: ["Biru", "Merah"],
     images: [
@@ -96,7 +96,7 @@ export const products: Product[] = [
     shortDescription: "Jaket varsity dengan rib pada kerah, manset, dan pinggang.",
     description:
       "Jaket varsity dengan kombinasi warna pada badan dan lengan, serta rib bergaris pada kerah, manset, dan pinggang. Bordir nama dan identitas dapat disesuaikan.",
-    character: "Jaket kampus/komunitas — kombinasi klasik varsity.",
+    character: "Jaket kampus atau komunitas dengan kombinasi klasik varsity.",
     customization: ["Bordir nama & emblem", "Kombinasi warna", "Aplikasi"],
     images: [
       {
@@ -116,7 +116,7 @@ export const products: Product[] = [
     shortDescription: "Kemeja kerja lengan pendek dengan kombinasi panel dan bordir identitas.",
     description:
       "Kemeja kerja lengan pendek dengan kombinasi panel warna dan striping, serta bordir logo dan identitas pada bagian belakang. Tersedia dua pilihan desain.",
-    character: "Kemeja kerja — identitas perusahaan di lapangan.",
+    character: "Kemeja kerja yang membawa identitas perusahaan di lapangan.",
     customization: ["Bordir logo & slogan", "Kombinasi panel warna"],
     images: [
       {
@@ -162,7 +162,7 @@ export const products: Product[] = [
     shortDescription: "Wearpack lengan panjang dengan kombinasi warna dan striping reflektif.",
     description:
       "Wearpack lengan panjang dengan kombinasi warna, epaulet bahu, dan striping reflektif pada bagian belakang. Dilengkapi saku dada berpentil dan penutup zipper.",
-    character: "Wearpack kerja — perlindungan dan identitas di lapangan.",
+    character: "Wearpack kerja untuk perlindungan dan identitas di lapangan.",
     customization: ["Bordir nama & logo", "Pilihan warna", "Striping reflektif"],
     colors: ["Abu Terang", "Cokelat"],
     images: [
@@ -198,7 +198,7 @@ export const products: Product[] = [
     shortDescription: "Kaos kerah (polo) dengan bordir logo dan identitas instansi.",
     description:
       "Kaos kerah lengan pendek dengan kerah standar dan plaket dua kancing. Bordir logo dan identitas instansi di bagian dada. Tersedia berbagai pilihan warna.",
-    character: "Polo instansi/komunitas — rapi dan nyaman untuk kegiatan harian.",
+    character: "Polo instansi atau komunitas, rapi dan nyaman untuk kegiatan harian.",
     customization: ["Bordir logo dada", "Bordir nama/belakang", "Pilihan warna"],
     colors: ["Kuning", "Biru Tua", "Oranye"],
     images: [

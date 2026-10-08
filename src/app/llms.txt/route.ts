@@ -29,7 +29,7 @@ export async function GET() {
     `## Kategori Produk`,
     ``,
     ...categories.flatMap((c) => [
-      `- ${c.name}${c.forWhom ? ` — untuk ${c.forWhom}` : ""}${
+      `- ${c.name}${c.forWhom ? ` (untuk ${c.forWhom})` : ""}${
         c.description ? `: ${c.description}` : ""
       }`,
     ]),

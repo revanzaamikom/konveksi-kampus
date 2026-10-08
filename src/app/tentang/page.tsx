@@ -1,7 +1,7 @@
 import { Section } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
 import { JsonLd } from "@/components/JsonLd";
-import { siteConfig } from "@/lib/site";
+import { siteConfig, whatsappLink } from "@/lib/site";
 import { breadcrumbJsonLd, genPageMetadata } from "@/lib/seo";
 
 export const metadata = genPageMetadata({
@@ -12,15 +12,15 @@ export const metadata = genPageMetadata({
 });
 
 const misi = [
-  "Menyediakan produk konveksi berkualitas tinggi dengan harga kompetitif.",
-  "Melayani kebutuhan clothing mahasiswa, organisasi kampus, dan komunitas lokal.",
-  "Menjaga komitmen terhadap ketetapan waktu, mutu dan kepuasan pelanggan.",
-  "Terus berinovasi dalam desain dan produksi untuk mengikuti tren pasar.",
+  "Mengerjakan pesanan konveksi custom sesuai model, bahan, warna, dan ukuran yang diminta.",
+  "Melayani kebutuhan seragam mahasiswa, organisasi kampus, komunitas, dan perusahaan.",
+  "Mengikuti alur yang disepakati: konsultasi, spesifikasi, produksi, lalu pengiriman.",
+  "Menyesuaikan desain dengan referensi atau desain yang Anda bawa.",
 ];
 
 export default function AboutPage() {
   return (
-    <main className="flex flex-1 flex-col">
+    <main id="main" className="flex flex-1 flex-col">
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Beranda", route: "/" },
@@ -35,10 +35,21 @@ export default function AboutPage() {
           </h1>
 
           <p className="text-muted-foreground mt-6 max-w-3xl text-lg">
-            Kami adalah vendor konveksi yang menyediakan jasa pembuatan sandang untuk mahasiswa
-            maupun masyarakat umum, dengan kualitas terbaik dan harga yang terjangkau bagi pelanggan
-            kami.
+            Kami memproduksi seragam dan apparel custom untuk mahasiswa, organisasi kampus,
+            komunitas, dan perusahaan. Pesanan dikerjakan sesuai spesifikasi yang Anda tentukan,
+            mulai dari model, bahan, dan warna sampai penempatan bordir atau sablon.
           </p>
+          <a
+            data-wa-cta
+            href={whatsappLink(
+              "Halo KonveksiKampus, saya ingin konsultasi pembuatan apparel custom.",
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-wipe bg-primary text-primary-foreground mt-6 inline-flex min-h-12 items-center rounded-[var(--radius-control)] px-6 text-sm font-semibold transition-colors duration-150"
+          >
+            Konsultasi via WhatsApp
+          </a>
         </Reveal>
 
         {/*
@@ -49,8 +60,8 @@ export default function AboutPage() {
           <Reveal as="section">
             <h2 className="text-primary text-xl font-semibold tracking-tight">Visi</h2>
             <p className="text-muted-foreground mt-3">
-              Menjadi konveksi terpercaya dan terjangkau yang mampu memenuhi kebutuhan fashion
-              dengan kualitas terbaik dan harga bersahabat.
+              Menjadi vendor konveksi yang bisa diandalkan kampus dan organisasi di Yogyakarta,
+              dengan hasil yang sesuai pesanan dan proses yang jelas.
             </p>
           </Reveal>
 

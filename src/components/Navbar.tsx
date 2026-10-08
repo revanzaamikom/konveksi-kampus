@@ -49,7 +49,7 @@ export function Navbar() {
         <Link
           href="/"
           className="flex min-w-0 items-center gap-2.5"
-          aria-label={`${siteConfig.displayName} — beranda`}
+          aria-label={`${siteConfig.displayName}, beranda`}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img

@@ -33,8 +33,8 @@ export const metadata: Metadata = {
   // unset so Next.js uses root-relative URLs (no invented domain).
   ...(hasCanonicalUrl ? { metadataBase: new URL(siteConfig.url) } : {}),
   title: {
-    default: `${siteConfig.displayName} — ${siteConfig.tagline}`,
-    template: `%s — ${siteConfig.displayName}`,
+    default: `${siteConfig.displayName} | ${siteConfig.tagline}`,
+    template: `%s | ${siteConfig.displayName}`,
   },
   description: siteConfig.description,
   /*
@@ -54,13 +54,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: siteConfig.locale,
     siteName: siteConfig.displayName,
-    title: `${siteConfig.displayName} — ${siteConfig.tagline}`,
+    title: `${siteConfig.displayName} | ${siteConfig.tagline}`,
     description: siteConfig.description,
     images: [{ url: ogImage, width: 1200, height: 630, alt: siteConfig.displayName }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.displayName} — ${siteConfig.tagline}`,
+    title: `${siteConfig.displayName} | ${siteConfig.tagline}`,
     description: siteConfig.description,
     images: [ogImage],
   },
@@ -70,6 +70,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="id" className={`${anton.variable} ${instrumentSans.variable} h-full antialiased`}>
       <body className="bg-background text-foreground flex min-h-full flex-col">
+        <a
+          href="#main"
+          className="bg-accent text-accent-foreground sr-only z-[100] rounded-[var(--radius-panel)] px-4 py-2 font-medium focus:not-sr-only focus:absolute focus:top-3 focus:left-3"
+        >
+          Lewati ke konten utama
+        </a>
         <div className="scroll-progress" aria-hidden="true" />
         <Navbar />
         {children}

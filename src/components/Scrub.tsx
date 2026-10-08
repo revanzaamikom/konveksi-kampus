@@ -46,11 +46,24 @@ export function Scrub({
 
     let visible = false;
     let pending = false;
+    // Smoothed current value for the continuous modes (lerp toward target).
+    let current = 0;
+    let lerpRaf = 0;
+
+    const paintParallax = (target: number) => {
+      const step = () => {
+        lerpRaf = 0;
+        current += (target - current) * 0.16;
+        el.style.transform = `translate3d(0, ${current.toFixed(2)}px, 0)`;
+        if (Math.abs(target - current) > 0.3) lerpRaf = requestAnimationFrame(step);
+      };
+      if (!lerpRaf) lerpRaf = requestAnimationFrame(step);
+    };
 
     const paint = (p: number) => {
       // p: 0 → element enters from bottom, 1 → element exits through top.
       if (mode === "parallax") {
-        el.style.transform = `translate3d(0, ${((p - 0.5) * amount * 100).toFixed(2)}px, 0)`;
+        paintParallax((p - 0.5) * amount * 100);
         return;
       }
       if (mode === "scale") {
@@ -113,6 +126,7 @@ export function Scrub({
     compute();
     return () => {
       io.disconnect();
+      if (lerpRaf) cancelAnimationFrame(lerpRaf);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };

@@ -12,7 +12,7 @@ export const faqItems: FaqItem[] = [
     id: "faq-custom-desain",
     question: "Apakah bisa custom desain?",
     answer:
-      "Bisa. Kami mengerjakan pesanan custom sesuai kebutuhan Anda — model, warna, ukuran, hingga penempatan bordir atau sablon.",
+      "Bisa. Kami mengerjakan pesanan custom sesuai kebutuhan Anda: model, warna, ukuran, hingga penempatan bordir atau sablon.",
     order: 1,
   },
   {
@@ -85,7 +85,7 @@ export const faqItems: FaqItem[] = [
     id: "faq-quotation",
     question: "Bagaimana cara mendapatkan quotation?",
     answer:
-      "Kirimkan detail kebutuhan Anda — jenis produk, jumlah, dan deadline — melalui WhatsApp. Kami akan berikan penawaran.",
+      "Kirimkan detail kebutuhan Anda (jenis produk, jumlah, dan deadline) melalui WhatsApp. Kami akan berikan penawaran.",
     order: 12,
   },
   {

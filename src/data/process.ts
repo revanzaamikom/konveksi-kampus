@@ -9,7 +9,7 @@ export const processSteps: ProcessStep[] = [
     id: "step-1",
     step: "01",
     title: "Konsultasi",
-    description: "Sampaikan kebutuhan Anda — jenis produk, jumlah, dan referensi.",
+    description: "Sampaikan kebutuhan Anda: jenis produk, jumlah, dan referensi.",
     order: 1,
   },
   {

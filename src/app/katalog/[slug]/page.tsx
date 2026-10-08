@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps) {
   if (!product) return { title: "Produk tidak ditemukan" };
 
   return genPageMetadata({
-    title: `${product.name} — Custom Konveksi Jogja`,
+    title: `${product.name} Custom Konveksi Jogja`,
     description: product.shortDescription ?? product.description,
     pageRoute: `/katalog/${product.slug}`,
     ogImg: product.images[0]?.src,
@@ -39,7 +39,7 @@ function productJsonLd(product: {
   return {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: `${product.name} — Custom Konveksi Jogja`,
+    name: `${product.name} Custom Konveksi Jogja`,
     description: product.description,
     ...(product.images[0] ? { image: [product.images[0].src] } : {}),
     brand: { "@type": "Brand", name: siteConfig.displayName },
@@ -73,7 +73,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
   ];
 
   return (
-    <main className="flex flex-1 flex-col">
+    <main id="main" className="flex flex-1 flex-col">
       <JsonLd data={productJsonLd(product)} scriptKey="product-json-ld" />
       <JsonLd data={breadcrumbJsonLd(breadcrumbs)} scriptKey="breadcrumb-json-ld" />
       <Section className="py-10">
@@ -232,6 +232,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
               </p>
 
               <a
+                data-wa-cta
                 href={whatsappLink(inquiryMessage)}
                 target="_blank"
                 rel="noopener noreferrer"

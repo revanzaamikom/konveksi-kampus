@@ -72,6 +72,13 @@
     -ms-overflow-style: none;
   }
 
+  /* Keep in-page anchors clear of the mobile sticky WhatsApp bar (mobile only). */
+  @media (max-width: 639px) {
+    html {
+      scroll-padding-bottom: 5rem;
+    }
+  }
+
   html::-webkit-scrollbar {
     display: none;
   }
@@ -260,10 +267,11 @@
   transition-duration: 0.85s, 0.5s;
   transition-timing-function: var(--ease-out-expo), ease-out;
   transition-delay: var(--mask-delay, 0ms);
-  will-change: transform;
 }
 
+/* Hidden state + GPU hint only while mid-transition (removed once shown). */
 .mask[data-loaded="false"] > * {
+  will-change: transform;
   opacity: 0;
   transform: translate3d(0, 108%, 0);
 }

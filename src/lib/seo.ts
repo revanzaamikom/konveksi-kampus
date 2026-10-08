@@ -49,7 +49,7 @@ export function genPageMetadata({
   pageRoute,
   ogImg = seoConfig.defaultOgImg,
 }: PageMetadataInput) {
-  const fullTitle = `${title} — ${seoConfig.siteName}`;
+  const fullTitle = `${title} | ${seoConfig.siteName}`;
 
   return {
     title,

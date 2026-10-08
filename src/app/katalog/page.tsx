@@ -5,6 +5,7 @@ import { Section } from "@/components/Section";
 import { JsonLd } from "@/components/JsonLd";
 import { getCategories } from "@/lib/content/categories";
 import { getProducts } from "@/lib/content/products";
+import { whatsappLink } from "@/lib/site";
 import { breadcrumbJsonLd, genPageMetadata } from "@/lib/seo";
 
 export const metadata = genPageMetadata({
@@ -18,7 +19,7 @@ export default async function CatalogPage() {
   const [products, categories] = await Promise.all([getProducts(), getCategories()]);
 
   return (
-    <main className="flex flex-1 flex-col">
+    <main id="main" className="flex flex-1 flex-col">
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Beranda", route: "/" },
@@ -32,6 +33,17 @@ export default async function CatalogPage() {
           <p className="text-muted-foreground mt-3 max-w-2xl">
             Pilih kategori untuk mempersempit pilihan, atau jelajahi seluruh produk yang tersedia.
           </p>
+          <a
+            data-wa-cta
+            href={whatsappLink(
+              "Halo KonveksiKampus, saya ingin konsultasi pembuatan apparel custom.",
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-wipe bg-primary text-primary-foreground mt-5 inline-flex min-h-12 items-center rounded-[var(--radius-control)] px-6 text-sm font-semibold transition-colors duration-150"
+          >
+            Konsultasi via WhatsApp
+          </a>
         </Reveal>
 
         {/* Filter chips — wrap, never clip (UX: Chip Collection Reflow). */}
@@ -57,15 +69,35 @@ export default async function CatalogPage() {
         </Reveal>
 
         {products.length > 0 ? (
-          <ul className="mt-9 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {products.map((product, index) => (
-              <Reveal as="li" key={product.id} clip once delay={(index % 3) * 100}>
-                <ProductCard product={product} />
-              </Reveal>
-            ))}
-          </ul>
+          <>
+            <h2 className="sr-only">Semua produk</h2>
+            <ul className="mt-9 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {products.map((product, index) => (
+                <Reveal as="li" key={product.id} clip once delay={(index % 3) * 100}>
+                  <ProductCard product={product} />
+                </Reveal>
+              ))}
+            </ul>
+          </>
         ) : (
-          <p className="text-muted-foreground mt-9">Belum ada produk untuk ditampilkan.</p>
+          <div className="border-border bg-card mt-9 rounded-[var(--radius-surface)] border p-6 sm:p-8">
+            <p className="text-foreground font-medium">Belum ada produk untuk ditampilkan.</p>
+            <p className="text-muted-foreground mt-2 max-w-xl text-sm">
+              Punya kebutuhan custom? Konsultasikan model yang Anda inginkan, kami bantu dari
+              penentuan spesifikasi hingga produksi.
+            </p>
+            <a
+              data-wa-cta
+              href={whatsappLink(
+                "Halo KonveksiKampus, saya ingin konsultasi pembuatan apparel custom.",
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-wipe bg-primary text-primary-foreground mt-5 inline-flex min-h-12 items-center rounded-[var(--radius-control)] px-6 text-sm font-semibold transition-colors duration-150"
+            >
+              Konsultasi via WhatsApp
+            </a>
+          </div>
         )}
       </Section>
     </main>

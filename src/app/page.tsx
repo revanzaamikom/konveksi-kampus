@@ -95,7 +95,7 @@ export default async function Home() {
   ]);
 
   return (
-    <main className="flex flex-1 flex-col">
+    <main id="main" className="flex flex-1 flex-col">
       <JsonLd
         data={breadcrumbJsonLd([{ name: "Beranda", route: "/" }])}
         scriptKey="breadcrumb-json-ld"
@@ -104,33 +104,48 @@ export default async function Home() {
           kiri gambar client (rounded 20px) + kartu abs; kanan judul Anton besar yang
           overlap ke kiri + subkopi + CTA pill. Palet tetap milik client. */}
       <section className="relative overflow-hidden">
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[0.85fr_1fr] lg:gap-12 lg:py-24">
-          <Parallax speed={-0.12}>
+        <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[0.85fr_1fr] lg:gap-12 lg:py-24">
+          {/* Desktop (lg+): two grid children = plate (col 1) + text (col 2), exactly
+              as before — Parallax on the plate. Mobile/tablet (<lg): one column, the
+              text child overlays the plate on a scrim so the whole hero (headline +
+              copy + CTAs) fits one viewport without scrolling. */}
+          <Parallax speed={-0.12} className="col-start-1 row-start-1">
             <Reveal clip trigger="eager">
-              <div className="bg-specimen border-plate-border relative aspect-[3/4] overflow-hidden rounded-[20px] border">
+              <div className="bg-specimen border-plate-border relative aspect-[4/5] overflow-hidden rounded-[var(--radius-media)] border lg:aspect-[3/4]">
                 <ProductImage
                   src="/brand/hero-flatlay.webp"
-                  alt="Beragam produk konveksi custom Konveksi Kampus — jaket, kaos, polo, dan korsa"
+                  alt="Beragam produk konveksi custom Konveksi Kampus: jaket, kaos, polo, dan korsa"
                   priority
                   sizes="(max-width: 1024px) 100vw, 42vw"
+                />
+                {/* Scrim: strong at the bottom (behind the overlaid text/CTAs),
+                    fading up. Mobile only — desktop uses the two-column layout. */}
+                <div
+                  aria-hidden="true"
+                  className="from-background via-background/75 absolute inset-0 bg-gradient-to-t to-transparent lg:hidden"
                 />
               </div>
             </Reveal>
           </Parallax>
 
-          <div className="relative">
-            <h1 className="text-display text-foreground relative z-10">
+          {/* Same grid cell as the plate on mobile (grid stacking → overlay on the
+              photo, text pinned to the bottom). Desktop: its own column. */}
+          <div className="col-start-1 row-start-1 self-end p-6 sm:p-8 lg:col-start-2 lg:row-start-1 lg:self-center lg:p-0">
+            <h1 className="text-foreground text-display-sm sm:text-display lg:text-display relative z-10">
               <MaskReveal delay={80}>Konveksi Custom</MaskReveal>
               <MaskReveal delay={220}>Seragam &amp; Apparel</MaskReveal>
             </h1>
             <Reveal delay={260}>
-              <p className="text-muted-foreground mt-6 max-w-xl text-lg text-balance">
+              <p className="text-muted-foreground mt-4 max-w-xl text-base text-balance sm:text-lg lg:mt-6">
                 PDH, PDL, korsa, jaket, polo, kaos, almamater, dan wearpack untuk organisasi,
-                kampus, komunitas, dan perusahaan — vendor konveksi Yogyakarta sejak 2012.
+                kampus, komunitas, dan perusahaan. Vendor konveksi Yogyakarta sejak 2012.
               </p>
             </Reveal>
             <Reveal delay={380}>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <div
+                data-wa-cta
+                className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:mt-8"
+              >
                 <Magnetic>
                   <a
                     href={whatsappLink(heroMessage)}
@@ -184,11 +199,14 @@ export default async function Home() {
           Cermin home-hero Modevo: grid 3 kolom, tengah turun 100px, judul Anton
           menimpa batas bawah kartu. Aset foto client sendiri. */}
       <section className="relative overflow-hidden pb-16" aria-label="Koleksi unggulan">
-        <div className="mx-auto w-full max-w-6xl px-4 pt-16 sm:px-6 lg:pt-24">
-          <div className="grid grid-cols-3 gap-3 sm:gap-5">
-            <Parallax speed={0.12}>
-              <Reveal clip trigger="eager">
-                <div className="bg-specimen border-plate-border relative aspect-[3/4] overflow-hidden rounded-[20px] border">
+        <div className="mx-auto w-full max-w-7xl px-4 pt-16 sm:px-6 lg:pt-24">
+          {/* Depth stack: centre plate is wider (less crop on the landscape photo),
+              scaled up, raised (z-10) and overlapped slightly onto its neighbours so
+              it reads as the front layer. Neighbours sit smaller and slightly behind. */}
+          <div className="grid grid-cols-3 items-start gap-4 sm:gap-6 lg:grid-cols-[1fr_1.3fr_1fr] lg:gap-8">
+            <Scrub mode="parallax" amount={0.9}>
+              <Reveal clip trigger="eager" className="origin-center scale-[0.97]">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-media)]">
                   <ProductImage
                     src="/images/products/jacket-lapangan.webp"
                     alt="Jaket lapangan custom dengan striping reflektif"
@@ -196,21 +214,32 @@ export default async function Home() {
                   />
                 </div>
               </Reveal>
-            </Parallax>
-            <Parallax speed={-0.1} className="mt-10 lg:mt-24">
-              <Reveal clip delay={120} trigger="eager">
-                <div className="bg-specimen border-plate-border relative aspect-[3/4] overflow-hidden rounded-[20px] border">
-                  <ProductImage
-                    src="/images/products/korsa-perminyakan-upnvyk-front.webp"
-                    alt="Korsa perminyakan dengan bordir nama jurusan"
-                    sizes="(max-width: 1024px) 33vw, 25vw"
-                  />
-                </div>
-              </Reveal>
-            </Parallax>
-            <Parallax speed={0.08}>
-              <Reveal clip delay={220} trigger="eager">
-                <div className="bg-specimen border-plate-border relative aspect-[3/4] overflow-hidden rounded-[20px] border">
+            </Scrub>
+            <Scrub
+              mode="parallax"
+              amount={-1.1}
+              className="relative z-10 -mx-4 mt-10 sm:-mx-8 lg:-mx-14 lg:mt-24"
+            >
+              <div className="rounded-[var(--radius-media)] shadow-[0_40px_90px_-24px_rgba(0,0,0,0.95)]">
+                <Reveal
+                  clip
+                  delay={120}
+                  trigger="eager"
+                  className="block origin-center scale-[1.04] sm:scale-105 lg:scale-110"
+                >
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-media)] ring-1 ring-white/20">
+                    <ProductImage
+                      src="/images/products/korsa-perminyakan-upnvyk-front.webp"
+                      alt="Korsa perminyakan dengan bordir nama jurusan"
+                      sizes="(max-width: 1024px) 40vw, 30vw"
+                    />
+                  </div>
+                </Reveal>
+              </div>
+            </Scrub>
+            <Scrub mode="parallax" amount={0.7}>
+              <Reveal clip delay={220} trigger="eager" className="origin-center scale-[0.97]">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-media)]">
                   <ProductImage
                     src="/images/products/jas-almamater-front.webp"
                     alt="Jas almamater dengan bordir emblem dada"
@@ -218,14 +247,14 @@ export default async function Home() {
                   />
                 </div>
               </Reveal>
-            </Parallax>
+            </Scrub>
           </div>
-          <div className="relative z-10 -mt-4 sm:-mt-10 lg:-mt-10">
+          <div className="relative z-10 mt-4 sm:-mt-6 lg:-mt-8">
             <Scrub
               as="h2"
               mode="slide"
-              from={-90}
-              to={90}
+              from={-36}
+              to={36}
               className="text-display text-foreground text-left"
             >
               <MaskReveal scroll delay={80}>
@@ -235,8 +264,8 @@ export default async function Home() {
             <Scrub
               as="p"
               mode="slide"
-              from={90}
-              to={-90}
+              from={36}
+              to={-36}
               className="text-display text-foreground text-right"
             >
               <MaskReveal scroll delay={220}>
@@ -309,7 +338,7 @@ export default async function Home() {
             <div className="flex flex-wrap items-end justify-between gap-6">
               <h2 className="text-display-sm text-foreground max-w-xl">Hasil Produksi</h2>
               <p className="text-muted-foreground max-w-md text-sm">
-                Sebagian karya yang telah kami kerjakan — dari korsa jurusan hingga wearpack
+                Sebagian karya yang telah kami kerjakan, dari korsa jurusan hingga wearpack
                 lapangan.
               </p>
             </div>
@@ -325,7 +354,7 @@ export default async function Home() {
         <div className="mx-auto w-full max-w-4xl px-4 py-24 sm:px-6 sm:py-32">
           <Scrub mode="rise" amount={0.08}>
             <p className="text-display-sm text-foreground text-balance">
-              Dibuat sesuai kebutuhan Anda — bukan template yang sama untuk semua.
+              Setiap pesanan dikerjakan dari spesifikasi yang Anda tentukan sendiri.
             </p>
           </Scrub>
           <Scrub mode="rise" amount={0.05}>
@@ -344,7 +373,7 @@ export default async function Home() {
         </Reveal>
         <Reveal delay={110} variant="left">
           <p className="text-muted-foreground mt-5 max-w-2xl">
-            Anda tidak sekadar memilih template. Sesuaikan detail berikut dengan kebutuhan Anda.
+            Sesuaikan detail berikut dengan kebutuhan Anda, dari model sampai penempatan bordir.
           </p>
         </Reveal>
         <ul className="mt-12 grid grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-3 lg:grid-cols-5">
@@ -387,7 +416,7 @@ export default async function Home() {
           <Reveal variant="left">
             <h2 className="text-display-sm text-foreground">Alur Pemesanan</h2>
             <p className="text-muted-foreground mt-5 max-w-2xl">
-              Dari konsultasi hingga pengiriman — begini prosesnya.
+              Dari konsultasi sampai pengiriman, begini prosesnya.
             </p>
           </Reveal>
           <Reveal delay={120}>
@@ -463,6 +492,7 @@ export default async function Home() {
           </Reveal>
           <Reveal delay={130}>
             <a
+              data-wa-cta
               href={whatsappLink(
                 "Halo KonveksiKampus, saya ingin konsultasi pembuatan apparel custom. Jenis produk: ... Jumlah: ... Deadline: ...",
               )}
