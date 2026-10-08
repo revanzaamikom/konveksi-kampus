@@ -19,6 +19,12 @@
       "skillPath": "skills/ai-seo/SKILL.md",
       "computedHash": "b02546fe45c184f0dd872a12fde808d66033a36b99942cfee9ff4470a7f5407d"
     },
+    "animation-forge": {
+      "source": "eskapeum/animation-forge",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "799f1205a640e489cccb24da654fd2a7fa3f6338cbfd97cee97ce7fe5849a2a3"
+    },
     "animation-vocabulary": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
@@ -115,6 +121,12 @@
       "skillPath": "skills/seo/technical/canonical/SKILL.md",
       "computedHash": "3b6f23afa3c6a525e5ad7b08d6cfcbf4fec8eef90e2ea2ef3832f746815c6213"
     },
+    "claude-landing-composer": {
+      "source": "onewave-ai/claude-skills",
+      "sourceType": "github",
+      "skillPath": "claude-landing-composer/SKILL.md",
+      "computedHash": "bfcd146df9ef161bbc5b8de2bd68b0a7648ab4975909f7d73db332c8106f6bed"
+    },
     "code-review": {
       "source": "mattpocock/skills",
       "sourceType": "github",
@@ -150,6 +162,12 @@
       "sourceType": "github",
       "skillPath": "skills/cold-email-subject-line-tester/SKILL.md",
       "computedHash": "d6ef1e57353b6ec3046697710f96d8cb3d0f69b0887d9a61bbba195338eecca8"
+    },
+    "conductor-motion": {
+      "source": "tdimino/claude-code-minoan",
+      "sourceType": "github",
+      "skillPath": "skills/design-media/conductor-motion/SKILL.md",
+      "computedHash": "05e9089149cad9455773b0c3c3b9264cde4ea8150883ba22ca17a66ea8ccfe9f"
     },
     "copy-editing": {
       "source": "coreyhaines31/marketingskills",
@@ -307,6 +325,12 @@
       "skillPath": "skills/strategies/launch/growth-funnel/SKILL.md",
       "computedHash": "6af549c325a9c36b95ee086c655ad3a3e9f1f11261661b391685eecf1bac4df6"
     },
+    "hero-generator": {
+      "source": "sediman-agent/openskynet",
+      "sourceType": "github",
+      "skillPath": "skills/kostja94_marketing-skills/hero/SKILL.md",
+      "computedHash": "4d4ea7324fb281b1996ae80425bf0ee164bbbc5878fc51672e2bbb42caea88cd"
+    },
     "high-end-visual-design": {
       "source": "leonxlnx/taste-skill",
       "sourceType": "github",
@@ -438,6 +462,18 @@
       "sourceType": "github",
       "skillPath": "skills/performance-and-web-vitals/SKILL.md",
       "computedHash": "534fd2136d706f46fdce4adce963e0c2f5c46e12f8db984d11257037b1237adb"
+    },
+    "phase": {
+      "source": "vercel-labs/phase",
+      "sourceType": "github",
+      "skillPath": "skills/phase/SKILL.md",
+      "computedHash": "df661c058b979866809141372eec842510fd26721b02f112dbeb46cee70f5804"
+    },
+    "premium-web-design": {
+      "source": "lucxar/premium-web-design-skill",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "d6eac0d21b4bf2aeb5441a4a4302b1910a5713ea52fe342cd64d0341d1cb169b"
     },
     "rawugc-api": {
       "source": "tfcbot/rawugc-skills",
@@ -816,6 +852,12 @@
       "sourceType": "github",
       "skillPath": "skills/web-design-guidelines/SKILL.md",
       "computedHash": "d8e7d3afe37dcc8a97b99ffb5afdb4d0919ae0092ea8b68f44eb201f035e33ac"
+    },
+    "web-design-mastery": {
+      "source": "anilcancakir/my-claude-code",
+      "sourceType": "github",
+      "skillPath": "skills/web-design-mastery/SKILL.md",
+      "computedHash": "668f17f24d17de1a5871cb8c7c4f1f491f157fa39b1792532df9b251dff6a5ba"
     },
     "writing-beats": {
       "source": "mattpocock/skills",

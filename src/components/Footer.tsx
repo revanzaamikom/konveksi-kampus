@@ -26,17 +26,17 @@ export function Footer() {
           <p className="text-sm font-semibold">Navigasi</p>
           <ul className="text-muted-foreground mt-3 space-y-2 text-sm">
             <li>
-              <Link href="/katalog" className="hover:text-foreground transition-colors">
+              <Link href="/katalog" className="hover:text-accent transition-colors duration-150">
                 Katalog
               </Link>
             </li>
             <li>
-              <Link href="/tentang" className="hover:text-foreground transition-colors">
+              <Link href="/tentang" className="hover:text-accent transition-colors duration-150">
                 Tentang
               </Link>
             </li>
             <li>
-              <Link href="/kontak" className="hover:text-foreground transition-colors">
+              <Link href="/kontak" className="hover:text-accent transition-colors duration-150">
                 Kontak
               </Link>
             </li>
@@ -51,7 +51,7 @@ export function Footer() {
                 href={siteConfig.socials.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-foreground transition-colors"
+                className="hover:text-accent transition-colors duration-150"
               >
                 Instagram @{siteConfig.instagram}
               </a>
@@ -61,7 +61,7 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="hover:text-foreground transition-colors"
+                  className="hover:text-accent transition-colors duration-150"
                 >
                   {siteConfig.email}
                 </a>

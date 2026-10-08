@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { Anton, Instrument_Sans } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
@@ -65,10 +66,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="id" className={`${anton.variable} ${instrumentSans.variable} h-full antialiased`}>
       <body className="bg-background text-foreground flex min-h-full flex-col">
+        <div className="scroll-progress" aria-hidden="true" />
         <Navbar />
         {children}
         <Footer />

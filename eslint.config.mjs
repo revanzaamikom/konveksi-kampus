@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Vendored agent skills — not our code, and they ship their own JS.
+    ".agents/**",
+    "tools/**",
   ]),
 ]);
 

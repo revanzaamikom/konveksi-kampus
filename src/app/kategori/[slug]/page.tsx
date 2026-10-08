@@ -1,10 +1,12 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProductCard } from "@/components/ProductCard";
+import { Reveal } from "@/components/Reveal";
 import { Section } from "@/components/Section";
+import { JsonLd } from "@/components/JsonLd";
 import { getCategories, getCategoryBySlug } from "@/lib/content/categories";
 import { getProducts } from "@/lib/content/products";
+import { breadcrumbJsonLd, genPageMetadata } from "@/lib/seo";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -15,15 +17,18 @@ export async function generateStaticParams() {
   return categories.map((category) => ({ slug: category.slug }));
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
   const category = await getCategoryBySlug(slug);
   if (!category) return { title: "Kategori tidak ditemukan" };
 
-  return {
-    title: category.name,
-    description: category.description ?? `Produk kategori ${category.name} dari KonveksiKampus.`,
-  };
+  return genPageMetadata({
+    title: `Konveksi ${category.name} Custom Jogja`,
+    description:
+      category.description ??
+      `Koleksi ${category.name} custom dari Konveksi Kampus: PDH, PDL, korsa, jaket, polo, kaos, almamater, rompi, wearpack, dan jas lab.`,
+    pageRoute: `/kategori/${category.slug}`,
+  });
 }
 
 export default async function CategoryPage({ params }: PageProps) {
@@ -38,6 +43,14 @@ export default async function CategoryPage({ params }: PageProps) {
 
   return (
     <main className="flex flex-1 flex-col">
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Beranda", route: "/" },
+          { name: "Katalog", route: "/katalog" },
+          { name: category.name, route: `/kategori/${category.slug}` },
+        ])}
+        scriptKey="breadcrumb-json-ld"
+      />
       <Section className="py-12">
         <nav aria-label="Breadcrumb" className="text-muted-foreground text-sm">
           <ol className="flex flex-wrap items-center gap-2">
@@ -90,10 +103,10 @@ export default async function CategoryPage({ params }: PageProps) {
 
         {products.length > 0 ? (
           <ul className="mt-9 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {products.map((product) => (
-              <li key={product.id}>
+            {products.map((product, index) => (
+              <Reveal as="li" key={product.id} clip delay={(index % 3) * 100}>
                 <ProductCard product={product} />
-              </li>
+              </Reveal>
             ))}
           </ul>
         ) : (

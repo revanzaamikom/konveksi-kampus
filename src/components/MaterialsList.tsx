@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/Reveal";
 import type { Material } from "@/lib/content/types";
 
 /**
@@ -9,7 +10,7 @@ export function MaterialsList({ materials }: { materials: Material[] }) {
 
   return (
     <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {materials.map((material) => {
+      {materials.map((material, index) => {
         const hasSpecs =
           material.character ||
           material.thickness ||
@@ -18,7 +19,12 @@ export function MaterialsList({ materials }: { materials: Material[] }) {
           material.recommendedFor;
 
         return (
-          <li key={material.id} className="border-border border-t pt-4">
+          <Reveal
+            as="li"
+            key={material.id}
+            delay={(index % 4) * 90}
+            className="border-border border-t pt-4"
+          >
             <h3 className="text-foreground font-heading text-lg tracking-wide uppercase">
               {material.name}
             </h3>
@@ -51,12 +57,8 @@ export function MaterialsList({ materials }: { materials: Material[] }) {
                   </ul>
                 ) : null}
               </dl>
-            ) : (
-              <p className="text-muted-foreground mt-2 text-sm">
-                Tanyakan detail bahan ini saat konsultasi.
-              </p>
-            )}
-          </li>
+            ) : null}
+          </Reveal>
         );
       })}
     </ul>

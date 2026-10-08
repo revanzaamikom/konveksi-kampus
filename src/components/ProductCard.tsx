@@ -11,7 +11,7 @@ export function ProductCard({ product }: { product: Product }) {
 
   return (
     <Link href={`/katalog/${product.slug}`} className="group block">
-      <div className="bg-specimen border-plate-border relative aspect-[4/5] overflow-hidden rounded-[2px] border">
+      <div className="bg-specimen border-plate-border relative aspect-[3/4] overflow-hidden rounded-[var(--radius-media)] border">
         {cover ? (
           <ProductImage
             src={cover.src}
@@ -19,6 +19,11 @@ export function ProductCard({ product }: { product: Product }) {
             className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             sizes="(max-width: 640px) 50vw, 33vw"
           />
+        ) : null}
+        {product.shortDescription ? (
+          <div className="card-overlay bg-background/85 absolute inset-x-0 bottom-0 p-4 backdrop-blur-sm">
+            <p className="text-foreground text-sm font-medium">Lihat Detail →</p>
+          </div>
         ) : null}
       </div>
       <div className="mt-3">

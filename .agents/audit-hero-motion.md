@@ -1,0 +1,22 @@
+# Audit hero+motion (pending diff, src tak diubah)
+
+- [ ] src/app/page.tsx:8 import PortfolioGrid tak terpakai (dipakai PortfolioGridRevealed) — MASALAH
+- [ ] src/app/layout.tsx:68 React.ReactNode tanpa import React — MASALAH
+- [ ] src/app/page.tsx:115 kartu abs w-72 + left-10, layar 320px overflow — MASALAH
+- [ ] src/app/page.tsx:148 CTA pill hardcode rounded-[60px] duplikat LinkButton; vs page.tsx:396 pakai var(--radius-control) — MASALAH
+- [ ] src/components/LinkButton.tsx:7 rounded-[60px] vs token 999px; plate rounded-[20px] (page.tsx:107, ProductCard.tsx:14, CategoryGrid.tsx:22, PortfolioGridRevealed.tsx:21) vs token surface 10px; thumb page.tsx:116 rounded-[2px] sisa skala lama — MASALAH
+- [ ] src/app/page.tsx:148 CTA text-[18px] vs final CTA text-sm — MASALAH minor
+- [ ] src/app/globals.css:125-138 text-body-* + 116 text-display-xs tak dipakai di src — MASALAH (dead CSS)
+- [ ] src/app/globals.css:220-240 link-underline tak dipakai, hover-only tanpa :focus-visible — MASALAH minor
+- [ ] src/app/globals.css:171 --ease-out-quint tak dipakai — MASALAH (dead token)
+- [ ] src/app/globals.css:148-161 + 262-283 dua blok reduce tumpang tindih ([data-clip]/.mask/marquee hanya di blok 2) — MASALAH minor
+- [ ] src/app/globals.css:141-145 :focus-visible radius 999px di semua elemen, outline pill di kartu persegi — MASALAH minor
+- [ ] src/components/Marquee.tsx:10-16 pause hanya hover, tanpa :focus-within/kontrol; duplikat aria-hidden OK — MASALAH minor
+- [ ] src/components/MaskReveal.tsx:12-26 rAF ganda tanpa failsafe; tanpa cek matchMedia (ditutup CSS globals.css:271) — OK dgn catatan
+- [ ] src/components/Reveal.tsx:80 pola armed (SSR/no-JS tampil), failsafe 2500ms, in-view langsung — OK
+- [ ] src/components/Reveal.tsx:35-38 cek reduced-motion JS + globals.css:262-269 paksa final state — OK
+- [ ] src/app/globals.css:176-217 [data-reveal]/[data-clip]/.mask sembunyi hanya saat JS arm — OK
+- [ ] src/app/page.tsx:283 Reveal as="li" di ul valid; Marquee.tsx:13 aria-hidden salinan kedua — OK
+- [ ] src/app/page.tsx:129 lg:-ml-24 overlap judul ke gambar, section overflow-hidden potong sisa — OK, cek visual 1024px
+- [ ] src/components/CategoryGrid.tsx:18 offset lg:translate-y-10/20 + gap-y-12 — OK, cek whitespace baris akhir
+- [ ] src/app/globals.css:99-113 display clamp 142/96px sesuai komen skala — OK

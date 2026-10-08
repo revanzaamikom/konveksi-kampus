@@ -52,15 +52,28 @@
   --font-sans: var(--font-instrument);
   --font-heading: var(--font-anton);
 
-  /* Small, deliberate radius set — not every element is a pill (antislop R-11). */
+  /* Radius set ala referensi: kartu foto 20px, info kecil 10px, CTA pill.
+   * CTA tetap pill 999px; kartu memakai --radius-media. */
   --radius-control: 999px;
+  --radius-media: 20px;
+  --radius-panel: 10px;
   --radius-surface: 10px;
 }
 
 @layer base {
   html {
-    /* Prevent accidental horizontal scroll on mobile (foundation §19). */
-    overflow-x: hidden;
+    /*
+     * Prevent horizontal scroll WITHOUT creating a scroll container.
+     * `overflow-x: hidden` on <html> turns the root into a scroll container and
+     * breaks IntersectionObserver rootMargin (reveals never fire). `clip` does not.
+     */
+    overflow-x: clip;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
   }
 
   body {
@@ -87,71 +100,228 @@
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.01em;
-    line-height: 0.92;
+    line-height: 1.2;
+    text-wrap: balance;
   }
 
-  /* Giant editorial display headline (reference: Modevo's Anton titles). Fluid, not 142px. */
+  /*
+   * Fluid type system aligned to the Modevo scale (H1 142/120%, H2 96/120%,
+   * H3 64/125%, H4 48/129%). Desktop hits the reference scale; fluid clamp
+   * keeps mobile readable. Anton display + Instrument Sans body stay intact.
+   */
   .text-display {
     font-family: var(--font-heading), system-ui, sans-serif;
     font-weight: 400;
     text-transform: uppercase;
-    font-size: clamp(2.5rem, 1.2rem + 5.2vw, 5.5rem);
-    line-height: 0.92;
+    font-size: clamp(3rem, 1.25rem + 8.75vw, 8.875rem);
+    line-height: 1.2;
     letter-spacing: 0.005em;
   }
 
-  /* Section heading scale. */
   .text-display-sm {
     font-family: var(--font-heading), system-ui, sans-serif;
     font-weight: 400;
     text-transform: uppercase;
-    font-size: clamp(2rem, 1rem + 4.5vw, 4.5rem);
-    line-height: 0.94;
+    font-size: clamp(2.625rem, 1.25rem + 5.5vw, 6rem);
+    line-height: 1.2;
   }
 
   /* Visible keyboard focus using the accent ring (accessibility floor). */
   :focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 2px;
-    border-radius: var(--radius-control);
-  }
-
-  /* Respect reduced motion (antislop R-19). */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
-    /* Ensure revealed content is visible when motion is reduced. */
-    [data-reveal] {
-      opacity: 1 !important;
-      transform: none !important;
-    }
   }
 }
 
 /*
- * Scroll reveal — mirrors the reference's fade/slide-up-on-scroll.
- * Applied by src/components/Reveal.tsx via IntersectionObserver (no scroll listeners).
- * Elements start hidden only when JS is present (progressive enhancement).
+ * MOTION SYSTEM — reference-driven (Modevo: entrance masks, scroll reveals, hover physics,
+ * marquee). Real deceleration easing (expo-out), transform/opacity only (GPU-safe).
+ * Everything degrades to the final state under prefers-reduced-motion.
  */
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---- Scroll reveal: fade + slide up (applied by Reveal.tsx).
+ * Hidden only when JS arms it via [data-reveal] (progressive enhancement). ---- */
 [data-reveal] {
   opacity: 0;
-  transform: translate3d(0, 28px, 0);
-  transition:
-    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translate3d(0, 32px, 0);
+  transition-property: opacity, transform;
+  transition-duration: 0.7s;
+  transition-timing-function: var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal].animating {
+  will-change: transform, opacity;
 }
 
 [data-reveal][data-revealed="true"] {
   opacity: 1;
-  transform: translate3d(0, 0, 0);
+  transform: none;
 }
 
-/* Marquee — the reference runs a continuous logo/text strip. */
+/* Direction variants (Larose slide-in; conductor stagger keeps delay in CSS var). */
+[data-reveal-left] {
+  transform: translate3d(-48px, 12px, 0) scale(0.99);
+}
+
+[data-reveal-right] {
+  transform: translate3d(48px, 12px, 0) scale(0.99);
+}
+
+[data-reveal-scale] {
+  transform: scale(0.94) translate3d(0, 16px, 0);
+}
+
+/* Custom options: per-item underline sweep on hover (micro-interaction). */
+.custom-item {
+  position: relative;
+  display: inline-block;
+  transition: color 0.25s ease-out;
+}
+
+.custom-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 2px;
+  width: 100%;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-out-expo);
+}
+
+.custom-item:hover {
+  color: var(--color-accent);
+}
+
+.custom-item:hover::after {
+  transform: scaleX(1);
+}
+
+/* Process numerals: count-up feel via staggered mask on scroll. */
+.process-step {
+  transition: border-color 0.3s ease-out;
+}
+
+.process-step:hover {
+  border-color: var(--color-accent);
+}
+
+/* Scroll progress: thin accent bar (scroll-choreography pattern, CSS-native). */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  height: 3px;
+  width: 100%;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: scroll-progress linear forwards;
+  animation-timeline: scroll();
+}
+
+@keyframes scroll-progress {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ---- Mask reveal: text slides up from behind a clipped edge (hero headings) ----
+ * Hidden only when JS arms it via data-loaded="false" (progressive enhancement). */
+.mask {
+  display: block;
+  overflow: hidden;
+}
+
+.mask > * {
+  display: block;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-property: transform, opacity;
+  transition-duration: 0.85s, 0.5s;
+  transition-timing-function: var(--ease-out-expo), ease-out;
+  transition-delay: var(--mask-delay, 0ms);
+  will-change: transform;
+}
+
+.mask[data-loaded="false"] > * {
+  opacity: 0;
+  transform: translate3d(0, 108%, 0);
+}
+
+/* ---- Image reveal: clip-path wipe in (plates) ----
+ * Hidden only when JS arms it via [data-clip] (progressive enhancement). */
+[data-clip] {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.9s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-clip][data-revealed="true"] {
+  clip-path: inset(0 0 0 0);
+}
+
+/* ---- Card overlay: info slides up on hover (a-6/a-7) ----
+ * Hidden only via opacity/transform; focus-visible mirrors hover. */
+.card-overlay {
+  opacity: 0;
+  transform: translate3d(0, 100%, 0);
+  transition-property: opacity, transform;
+  transition-duration: 0.5s, 0.4s;
+  transition-timing-function: var(--ease-out-expo);
+}
+
+.group:hover .card-overlay,
+.group:focus-within .card-overlay {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- Button wipe: bg fills left-to-right (a-30/a-31) ---- */
+.btn-wipe {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.btn-wipe::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out-expo);
+}
+
+.btn-wipe:hover::before,
+.btn-wipe:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.btn-wipe:hover,
+.btn-wipe:focus-visible {
+  color: var(--color-accent-foreground);
+}
+
+/* ---- Navbar hide on scroll down (a-25/a-26) ---- */
+[data-nav-hidden="true"] {
+  transform: translate3d(0, -100%, 0);
+}
+
+.navbar-animated {
+  transition: transform 0.3s var(--ease-out-expo);
+}
+
+/* ---- Marquee: continuous horizontal strip (a-5: x -100, 25s) ---- */
 @keyframes marquee {
   from {
     transform: translate3d(0, 0, 0);
@@ -161,12 +331,59 @@
   }
 }
 
-.animate-marquee {
-  animation: marquee 28s linear infinite;
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.marquee-reverse {
+  animation-direction: reverse;
+  animation-duration: 30s;
+}
+
+.marquee-wrapper:hover .marquee-track,
+.marquee-wrapper:focus-within .marquee-track {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
-    animation: none;
+  [data-reveal],
+  [data-clip] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    transition: none !important;
+  }
+
+  .mask > * {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .marquee-track {
+    animation: none !important;
+  }
+
+  .card-overlay {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .scroll-progress {
+    animation: none !important;
+  }
+
+  .custom-item::after {
+    transition: none !important;
+  }
+
+  .btn-wipe::before {
+    transition: none !important;
+  }
+
+  .navbar-animated {
+    transition: none !important;
   }
 }

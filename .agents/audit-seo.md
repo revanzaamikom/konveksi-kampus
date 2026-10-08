@@ -1,0 +1,10 @@
+# Audit SEO — pending diff
+
+- [x] Domain inventarisasi — `src/lib/site.ts:21,31`, `src/lib/seo.ts:23`, `.env.example:13`, `.env.local:1-4` — status OK (baseUrl/url kosong, `konveksikampus.com` hanya di komentar `site.ts:8-9` dan tidak dipakai; eksternal hanya `wa.me`, `instagram.com`, `linktr.ee`, `schema.org`)
+- [x] Canonical/metadataBase gating — `src/app/layout.tsx:33`, `src/lib/seo.ts:57-59`, `src/app/robots.ts:10-17`, `src/app/sitemap.ts:14` — status OK (kondisional, tanpa domain palsu; preview: tanpa canonical, robots disallow, sitemap kosong)
+- [ ] Canonical/sitemap/robots nonaktif di preview — `src/lib/site.ts:52-53`, `src/app/layout.tsx:33` — status MASALAH (by-design, deployment-gated; wajib isi `NEXT_PUBLIC_SITE_URL` sebelum launch/indeks)
+- [x] Duplikat title — `src/app/page.tsx:30`, `src/app/katalog/page.tsx:10`, `src/app/kategori/[slug]/page.tsx:25`, `src/app/katalog/[slug]/page.tsx:26`, `src/app/kontak/page.tsx:7`, `src/app/tentang/page.tsx:7`, `src/app/layout.tsx:34-37` — status OK (semua unik; template layout `%s — Konveksi Kampus` teraplikasi; redundansi frasa "Konveksi Jogja" di title produk/kategori ditoleransi)
+- [x] JSON-LD struktur valid — `src/components/JsonLd.tsx:7-15`, `src/lib/seo.ts:87-97,109-119`, `src/app/katalog/[slug]/page.tsx:38-46,76-77`, `src/app/page.tsx:99,370` — status OK (`FAQPage`, `BreadcrumbList`, `Product`+`brand`; `scriptKey` unik per halaman)
+- [ ] JSON-LD URL/offer degradasi preview — `src/lib/seo.ts:117`, `src/app/katalog/[slug]/page.tsx:43` — status MASALAH (ringan; breadcrumb `item` hilang dan `image` produk relatif tanpa baseUrl; produk tanpa `offers` jadi tak eligible rich snippet; upgrade saat domain + data harga fix; jangan invent harga)
+- [x] llms.txt akurat — `src/app/llms.txt/route.ts:12-59` — status OK (live dari `getCategories/getProducts/getFaqItems/getMaterials`; fakta WA/IG/alamat/est dari `siteConfig`; `force-static` + `text/plain`; tanpa domain inventaris)
+- [x] Diff `layout.tsx` non-SEO — `src/app/layout.tsx:68` — status OK (hanya ubah tipe props, metadata tak tersentuh)

@@ -30,6 +30,7 @@ export function ProductImage({
       alt={alt}
       fill
       priority={priority}
+      loading={priority ? "eager" : "lazy"}
       sizes={sizes}
       className={className ?? "object-cover"}
     />

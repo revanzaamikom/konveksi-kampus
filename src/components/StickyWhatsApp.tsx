@@ -14,7 +14,7 @@ export function StickyWhatsApp() {
         href={whatsappLink(message)}
         target="_blank"
         rel="noopener noreferrer"
-        className="bg-primary text-primary-foreground flex min-h-12 w-full items-center justify-center rounded-[var(--radius-control)] text-sm font-semibold"
+        className="btn-wipe bg-primary text-primary-foreground flex min-h-12 w-full items-center justify-center rounded-[var(--radius-control)] text-sm font-semibold"
       >
         Konsultasi via WhatsApp
       </a>
