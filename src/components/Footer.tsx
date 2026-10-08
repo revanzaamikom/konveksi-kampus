@@ -1,12 +1,24 @@
 import Link from "next/link";
-import { siteConfig } from "@/lib/site";
+import { assetPath, siteConfig } from "@/lib/site";
 
 export function Footer() {
   return (
     <footer className="border-border bg-card mt-20 border-t">
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-3">
         <div>
-          <p className="text-primary text-lg font-semibold tracking-tight">{siteConfig.name}</p>
+          <div className="flex items-center gap-3">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={assetPath("/brand/logo-256.png")}
+              alt={`Logo ${siteConfig.displayName}`}
+              width={40}
+              height={40}
+              className="h-10 w-10 rounded-[var(--radius-control)]"
+            />
+            <p className="text-foreground text-lg font-semibold tracking-tight">
+              {siteConfig.displayName}
+            </p>
+          </div>
           <p className="text-muted-foreground mt-3 max-w-xs text-sm">{siteConfig.description}</p>
         </div>
 

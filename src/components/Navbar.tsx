@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { siteConfig } from "@/lib/site";
+import { assetPath, siteConfig } from "@/lib/site";
 
 const navLinks = [
   { href: "/katalog", label: "Katalog" },
@@ -9,17 +9,27 @@ const navLinks = [
 
 export function Navbar() {
   return (
-    <header className="border-border bg-card sticky top-0 z-50 border-b">
+    <header className="border-border bg-card/95 sticky top-0 z-50 border-b backdrop-blur-sm">
       <nav
         aria-label="Navigasi utama"
         className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-4 sm:px-6"
       >
         <Link
           href="/"
-          className="text-primary text-lg font-semibold tracking-tight"
-          aria-label={`${siteConfig.name} — beranda`}
+          className="flex items-center gap-3"
+          aria-label={`${siteConfig.displayName} — beranda`}
         >
-          {siteConfig.name}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={assetPath("/brand/logo-256.png")}
+            alt={`Logo ${siteConfig.displayName}`}
+            width={40}
+            height={40}
+            className="h-10 w-10 rounded-[var(--radius-control)]"
+          />
+          <span className="text-foreground text-lg font-semibold tracking-tight">
+            {siteConfig.displayName}
+          </span>
         </Link>
 
         <ul className="flex items-center gap-1 sm:gap-2">
