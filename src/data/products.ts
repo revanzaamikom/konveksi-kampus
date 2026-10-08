@@ -1,11 +1,11 @@
 import type { Product } from "@/lib/content/types";
 
 /**
- * Raw product records (Standard content files).
+ * Raw product records (content files, foundation §8/§21).
  *
- * Grouped from the client's 21 real product photos into 12 catalog products:
- * front/back photos become a gallery; colour differences become variants.
- * See PRD.md §13.
+ * Grouped from the client's real product photos (front/back = gallery, colours = variants).
+ * Field values are only filled from the real assets — no invented materials, prices,
+ * minimum order, or production times (foundation §22).
  *
  * NOTE: UI must not import this file directly; read via `src/lib/content/products.ts`.
  */
@@ -18,7 +18,8 @@ export const products: Product[] = [
     shortDescription: "Kemeja korsa lengan panjang dengan bordir nama dan identitas jurusan.",
     description:
       "Korsa lengan panjang dengan dua kantong dada berpentil, epaulet bahu, dan bordir nama serta identitas jurusan. Cocok untuk kegiatan kampus, himpunan, maupun komunitas.",
-    material: "Drill / American Drill",
+    character: "Formal lapangan — rapi untuk kegiatan resmi maupun harian.",
+    customization: ["Bordir nama & NIM", "Bordir emblem jurusan", "Kombinasi warna"],
     images: [
       {
         src: "/images/products/korsa-perminyakan-upnvyk-front.webp",
@@ -44,6 +45,8 @@ export const products: Product[] = [
     shortDescription: "Jaket lapangan berhood dengan striping reflektif dan bordir logo.",
     description:
       "Jaket lapangan berhood dengan zipper penuh dan striping reflektif pada bagian dada serta lengan. Dilengkapi bordir logo dan teks koordinat pada sisi depan.",
+    character: "Jaket lapangan berhood — fungsional untuk kegiatan outdoor.",
+    customization: ["Bordir logo", "Striping reflektif", "Kombinasi warna"],
     images: [
       {
         src: "/images/products/jacket-lapangan.webp",
@@ -63,6 +66,9 @@ export const products: Product[] = [
     shortDescription: "Jaket outdoor berhood dengan kombinasi banyak saku berzipper.",
     description:
       "Jaket outdoor berhood dengan plaket setengah zipper, dua saku dada berzipper beserta flap, dan saku besar di bagian bawah. Dilengkapi tali drawstring yang dapat diatur.",
+    character: "Jaket lapangan dengan saku banyak — praktis untuk mobilitas.",
+    customization: ["Bordir logo", "Pilihan warna"],
+    colors: ["Biru", "Merah"],
     images: [
       {
         src: "/images/products/jacket-lapangan-kombinasi-saku-blue.webp",
@@ -90,6 +96,8 @@ export const products: Product[] = [
     shortDescription: "Jaket varsity dengan rib pada kerah, manset, dan pinggang.",
     description:
       "Jaket varsity dengan kombinasi warna pada badan dan lengan, serta rib bergaris pada kerah, manset, dan pinggang. Bordir nama dan identitas dapat disesuaikan.",
+    character: "Jaket kampus/komunitas — kombinasi klasik varsity.",
+    customization: ["Bordir nama & emblem", "Kombinasi warna", "Aplikasi"],
     images: [
       {
         src: "/images/products/jacket-varsity.webp",
@@ -108,6 +116,8 @@ export const products: Product[] = [
     shortDescription: "Kemeja kerja lengan pendek dengan kombinasi panel dan bordir identitas.",
     description:
       "Kemeja kerja lengan pendek dengan kombinasi panel warna dan striping, serta bordir logo dan identitas pada bagian belakang. Tersedia dua pilihan desain.",
+    character: "Kemeja kerja — identitas perusahaan di lapangan.",
+    customization: ["Bordir logo & slogan", "Kombinasi panel warna"],
     images: [
       {
         src: "/images/products/workshirt-karya-agung-01.webp",
@@ -132,6 +142,8 @@ export const products: Product[] = [
     shortDescription: "Kemeja kerja lengan pendek dengan bordir slogan pada bagian belakang.",
     description:
       "Kemeja kerja lengan pendek berwarna terang dengan kerah standar, dua kantong dada, dan epaulet bahu. Bordir slogan dan identitas pada bagian belakang.",
+    character: "Kemeja kerja instansi/organisasi.",
+    customization: ["Bordir slogan & emblem"],
     images: [
       {
         src: "/images/products/workshirt-agribusiness-instiper.webp",
@@ -150,6 +162,9 @@ export const products: Product[] = [
     shortDescription: "Wearpack lengan panjang dengan kombinasi warna dan striping reflektif.",
     description:
       "Wearpack lengan panjang dengan kombinasi warna, epaulet bahu, dan striping reflektif pada bagian belakang. Dilengkapi saku dada berpentil dan penutup zipper.",
+    character: "Wearpack kerja — perlindungan dan identitas di lapangan.",
+    customization: ["Bordir nama & logo", "Pilihan warna", "Striping reflektif"],
+    colors: ["Abu Terang", "Cokelat"],
     images: [
       {
         src: "/images/products/wearpack-variasi-lengan-white-front.webp",
@@ -179,10 +194,13 @@ export const products: Product[] = [
     id: "prd-kaos-kerah-bordir",
     slug: "kaos-kerah-bordir",
     name: "Kaos Kerah Bordir",
-    categorySlug: "kaos-kerah",
+    categorySlug: "polo",
     shortDescription: "Kaos kerah (polo) dengan bordir logo dan identitas instansi.",
     description:
       "Kaos kerah lengan pendek dengan kerah standar dan plaket dua kancing. Bordir logo dan identitas instansi di bagian dada. Tersedia berbagai pilihan warna.",
+    character: "Polo instansi/komunitas — rapi dan nyaman untuk kegiatan harian.",
+    customization: ["Bordir logo dada", "Bordir nama/belakang", "Pilihan warna"],
+    colors: ["Kuning", "Biru Tua", "Oranye"],
     images: [
       {
         src: "/images/products/kaos-kerah-bordir-geomatics-engineering-upnvyk.webp",
@@ -215,6 +233,9 @@ export const products: Product[] = [
     shortDescription: "Rompi serbaguna dengan banyak saku dan bordir identitas.",
     description:
       "Rompi dengan zipper depan, beberapa saku berflap, dan bordir identitas pada bagian dada. Cocok untuk kegiatan lapangan, organisasi, maupun komunitas.",
+    character: "Rompi serbaguna untuk panitia & kegiatan lapangan.",
+    customization: ["Bordir logo & nama", "Pilihan warna", "Saku tambahan"],
+    colors: ["Beige", "Abu"],
     images: [
       {
         src: "/images/products/rompi-bordir-beige-front.webp",
@@ -238,10 +259,12 @@ export const products: Product[] = [
     id: "prd-jas-lab",
     slug: "jas-lab",
     name: "Jas Lab",
-    categorySlug: "jas",
+    categorySlug: "jas-lab",
     shortDescription: "Jas laboratorium putih dengan bordir nama instansi.",
     description:
       "Jas laboratorium lengan panjang berwarna putih dengan kerah notch, kancing depan, dan kantong dada serta saku bawah. Bordir nama instansi dapat disesuaikan.",
+    character: "Jas laboratorium untuk praktikum dan instansi.",
+    customization: ["Bordir nama & instansi"],
     images: [
       {
         src: "/images/products/jas-lab-front.webp",
@@ -262,10 +285,12 @@ export const products: Product[] = [
     id: "prd-jas-almamater",
     slug: "jas-almamater",
     name: "Jas Almamater",
-    categorySlug: "jas",
+    categorySlug: "almamater",
     shortDescription: "Jas almamater dengan bordir emblem pada bagian dada.",
     description:
       "Jas almamater dengan kancing depan, kerah notch, dan saku berflap. Bordir emblem pada bagian dada dan dapat disesuaikan dengan identitas kampus.",
+    character: "Jas almamater kampus & sekolah.",
+    customization: ["Bordir emblem", "Pilihan warna almamater"],
     images: [
       {
         src: "/images/products/jas-almamater-front.webp",

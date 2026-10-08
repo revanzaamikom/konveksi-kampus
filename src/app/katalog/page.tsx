@@ -17,7 +17,7 @@ export default async function CatalogPage() {
   return (
     <main className="flex flex-1 flex-col">
       <Section className="py-12">
-        <h1 className="text-primary text-3xl font-semibold tracking-tight">Katalog Produk</h1>
+        <h1 className="text-foreground text-3xl font-semibold tracking-tight">Katalog Produk</h1>
         <p className="text-muted-foreground mt-3 max-w-2xl">
           Pilih kategori untuk mempersempit pilihan, atau jelajahi seluruh produk yang tersedia.
         </p>

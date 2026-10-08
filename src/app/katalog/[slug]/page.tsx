@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: product.name,
     description: product.shortDescription ?? product.description,
     openGraph: {
-      title: `${product.name} — ${siteConfig.name}`,
+      title: `${product.name} — ${siteConfig.displayName}`,
       description: product.shortDescription ?? product.description,
       images: product.images[0] ? [{ url: product.images[0].src }] : undefined,
     },
@@ -39,7 +39,17 @@ export default async function ProductDetailPage({ params }: PageProps) {
   if (!product) notFound();
 
   const category = categories.find((item) => item.slug === product.categorySlug);
-  const inquiryMessage = `Halo ${siteConfig.name}, saya tertarik dengan produk ${product.name}. Boleh minta informasi lebih lanjut?`;
+
+  // Lead-qualification message (foundation §16): prompt the customer to include the
+  // details the sales team needs, without making the flow complicated.
+  const inquiryMessage = [
+    `Halo ${siteConfig.displayName}, saya ingin konsultasi pembuatan ${product.name}.`,
+    "",
+    "Jenis produk: ",
+    "Jumlah: ",
+    "Deadline: ",
+    "Desain/referensi: (sudah ada / belum)",
+  ].join("\n");
 
   return (
     <main className="flex flex-1 flex-col">
@@ -108,17 +118,70 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 {category.name}
               </Link>
             ) : null}
-            <h1 className="text-primary mt-2 text-3xl font-semibold tracking-tight">
+            <h1 className="text-foreground mt-2 text-3xl font-semibold tracking-tight">
               {product.name}
             </h1>
             <p className="text-muted-foreground mt-4">{product.description}</p>
 
-            {product.material ? (
-              <dl className="border-border mt-6 border-t pt-5 text-sm">
-                <dt className="font-semibold">Bahan</dt>
-                <dd className="text-muted-foreground mt-1">{product.material}</dd>
-              </dl>
+            {product.character ? (
+              <p className="text-muted-foreground mt-3 text-sm italic">{product.character}</p>
             ) : null}
+
+            {/* Specs — only rows with real data are rendered (foundation §22). */}
+            <dl className="border-border mt-6 space-y-4 border-t pt-5 text-sm">
+              {product.materials && product.materials.length > 0 ? (
+                <div>
+                  <dt className="font-semibold">Pilihan bahan</dt>
+                  <dd className="text-muted-foreground mt-1">{product.materials.join(", ")}</dd>
+                </div>
+              ) : null}
+
+              {product.colors && product.colors.length > 0 ? (
+                <div>
+                  <dt className="font-semibold">Pilihan warna</dt>
+                  <dd className="text-muted-foreground mt-1">{product.colors.join(", ")}</dd>
+                </div>
+              ) : null}
+
+              {product.customization && product.customization.length > 0 ? (
+                <div>
+                  <dt className="font-semibold">Customization</dt>
+                  <dd className="mt-2">
+                    <ul className="flex flex-wrap gap-2">
+                      {product.customization.map((item) => (
+                        <li
+                          key={item}
+                          className="border-border bg-card text-muted-foreground rounded-[var(--radius-control)] border px-3 py-1"
+                        >
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+              ) : null}
+
+              {product.minimumOrder ? (
+                <div>
+                  <dt className="font-semibold">Minimum order</dt>
+                  <dd className="text-muted-foreground mt-1">{product.minimumOrder}</dd>
+                </div>
+              ) : null}
+
+              {product.productionEstimate ? (
+                <div>
+                  <dt className="font-semibold">Estimasi produksi</dt>
+                  <dd className="text-muted-foreground mt-1">{product.productionEstimate}</dd>
+                </div>
+              ) : null}
+
+              {product.priceHint ? (
+                <div>
+                  <dt className="font-semibold">Harga</dt>
+                  <dd className="text-muted-foreground mt-1">{product.priceHint}</dd>
+                </div>
+              ) : null}
+            </dl>
 
             {product.variants && product.variants.length > 0 ? (
               <div className="border-border mt-6 space-y-4 border-t pt-5">
@@ -140,13 +203,18 @@ export default async function ProductDetailPage({ params }: PageProps) {
               </div>
             ) : null}
 
+            {/* No confirmed price → route to quotation (foundation §8). */}
+            <p className="text-muted-foreground mt-6 text-sm">
+              Harga menyesuaikan spesifikasi. Hubungi kami untuk quotation.
+            </p>
+
             <a
               href={whatsappLink(inquiryMessage)}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-primary text-primary-foreground hover:bg-accent mt-8 inline-flex min-h-12 items-center rounded-[var(--radius-control)] px-6 text-sm font-semibold transition-colors duration-150"
+              className="bg-primary text-primary-foreground hover:bg-accent mt-4 inline-flex min-h-12 items-center rounded-[var(--radius-control)] px-6 text-sm font-semibold transition-colors duration-150"
             >
-              Pesan / Konsultasi via WhatsApp
+              Konsultasi via WhatsApp
             </a>
           </div>
         </div>

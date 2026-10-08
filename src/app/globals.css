@@ -38,8 +38,9 @@
   --color-accent-foreground: var(--color-accent-foreground);
   --color-destructive: var(--color-destructive);
 
-  --font-sans: var(--font-source-sans);
-  --font-heading: var(--font-lexend);
+  --font-sans: var(--font-plex-sans);
+  --font-heading: var(--font-plex-condensed);
+  --font-mono: var(--font-plex-mono);
 
   /* Small, deliberate radius set — not every element is a pill (antislop R-11). */
   --radius-control: 6px;
@@ -47,11 +48,18 @@
 }
 
 @layer base {
+  html {
+    /* Prevent accidental horizontal scroll on mobile (foundation §19). */
+    overflow-x: hidden;
+  }
+
   body {
     background: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans), system-ui, sans-serif;
     line-height: 1.5;
+    /* Long unbroken strings (e.g. product lists) should wrap, not overflow. */
+    overflow-wrap: break-word;
   }
 
   h1,
@@ -59,6 +67,24 @@
   h3 {
     font-family: var(--font-heading), system-ui, sans-serif;
     letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+
+  /* Fluid display headline (foundation §7). Floor readable at 320px, ceiling sane on ultrawide. */
+  .text-display {
+    font-family: var(--font-heading), system-ui, sans-serif;
+    font-size: clamp(2rem, 1.2rem + 3.6vw, 3.75rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    text-wrap: balance;
+  }
+
+  /* Monospace for spec values / quantities (industrial register). */
+  .font-spec {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.01em;
   }
 
   /* Visible keyboard focus using the accent ring (accessibility floor). */

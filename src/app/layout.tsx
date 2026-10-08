@@ -1,19 +1,34 @@
 import type { Metadata } from "next";
-import { Lexend, Source_Sans_3 } from "next/font/google";
+import { IBM_Plex_Mono, IBM_Plex_Sans, IBM_Plex_Sans_Condensed } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { StickyWhatsApp } from "@/components/StickyWhatsApp";
 import { hasCanonicalUrl, siteConfig } from "@/lib/site";
 import "./globals.css";
 
-const lexend = Lexend({
-  variable: "--font-lexend",
+/**
+ * Typography — IBM Plex superfamily (see DESIGN.md).
+ * Register: industrial/technical + editorial. One superfamily = guaranteed harmony.
+ * Only the weights actually used are loaded.
+ */
+const plexSans = IBM_Plex_Sans({
+  variable: "--font-plex-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const sourceSans = Source_Sans_3({
-  variable: "--font-source-sans",
+const plexCondensed = IBM_Plex_Sans_Condensed({
+  variable: "--font-plex-condensed",
   subsets: ["latin"],
+  weight: ["600", "700"],
+  display: "swap",
+});
+
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -59,11 +74,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="id" className={`${lexend.variable} ${sourceSans.variable} h-full antialiased`}>
+    <html
+      lang="id"
+      className={`${plexSans.variable} ${plexCondensed.variable} ${plexMono.variable} h-full antialiased`}
+    >
       <body className="bg-background text-foreground flex min-h-full flex-col">
         <Navbar />
         {children}
         <Footer />
+        <StickyWhatsApp />
       </body>
     </html>
   );

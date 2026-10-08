@@ -55,7 +55,9 @@ export default async function CategoryPage({ params }: PageProps) {
           </ol>
         </nav>
 
-        <h1 className="text-primary mt-5 text-3xl font-semibold tracking-tight">{category.name}</h1>
+        <h1 className="text-foreground mt-5 text-3xl font-semibold tracking-tight">
+          {category.name}
+        </h1>
         {category.description ? (
           <p className="text-muted-foreground mt-3 max-w-2xl">{category.description}</p>
         ) : null}

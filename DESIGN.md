@@ -58,12 +58,26 @@ yellow the single accent (used at the key moment only — antislop R-29). No gra
 
 ## Typography
 
-Verified pairing via `ui-ux-pro-max` → **"Corporate Trust"**: **Lexend** (headings) +
-**Source Sans 3** (body). Chosen for readability and a dependable, institutional tone — not a
-default-reach font picked without reason (antislop R-06).
+Register: **Industrial / technical** (PDH, PDL, wearpack, lab coats, safety-striped jackets)
+presented with an **editorial** finish (flat-lay product photography, big headlines).
 
-- Base body size 16px, line-height 1.5.
-- Type scale via Tailwind defaults; do not invent a parallel scale.
+Chosen with the `typography-expert` register framework — the **IBM Plex superfamily** (called out
+as "the most credible libre technical superfamily"). One superfamily on a shared skeleton
+guarantees pairing harmony (pairing rule #4); the mono gives a spec-sheet feel that fits an
+industrial garment maker.
+
+| Role                     | Family                      | Weight  | Notes                          |
+| ------------------------ | --------------------------- | ------- | ------------------------------ |
+| Display / h1–h2          | **IBM Plex Sans Condensed** | 600     | Editorial, compact headlines   |
+| Headings h3+ / UI        | **IBM Plex Sans**           | 500–600 | Technical, credible            |
+| Body                     | **IBM Plex Sans**           | 400     | 16px base, line-height 1.5     |
+| Labels / specs / numbers | **IBM Plex Mono**           | 400–500 | Sizes, quantities, spec values |
+
+- Replaces the earlier Lexend/Source Sans pick (an overused register); IBM Plex matches the
+  actual industrial-product reality.
+- Load only the weights used (perf).
+- Fluid headlines via `clamp()`; body stays a fixed 16px floor.
+- Line-height tightens as size grows; negative tracking at display sizes.
 
 ## Effects & motion
 

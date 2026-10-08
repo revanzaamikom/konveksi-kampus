@@ -79,11 +79,29 @@
       "skillPath": ".claude/skills/banner-design/SKILL.md",
       "computedHash": "0645bfc33632c7b332e649e35738ea807e1571436289cdaf86bebe6660c693ec"
     },
+    "better-typography": {
+      "source": "boraoztunc/skills",
+      "sourceType": "github",
+      "skillPath": "better-typography/SKILL.md",
+      "computedHash": "e4d235bfb5f56661ccf34e56118bde9476319e66299c98c06dfcc987881e92f2"
+    },
     "brand": {
       "source": "nextlevelbuilder/ui-ux-pro-max-skill",
       "sourceType": "github",
       "skillPath": ".claude/skills/brand/SKILL.md",
       "computedHash": "4d2fd808c903703954c9f318b859374c2ae8e46e41e0fa117033f0e01aec3fcf"
+    },
+    "brand-identity": {
+      "source": "cofoundy/brand-skills",
+      "sourceType": "github",
+      "skillPath": "skills/brand-identity/SKILL.md",
+      "computedHash": "aea9f37047a4e3de16c7b28c4c9993184a41d6dc51683d9cb9bd7e154cb349cc"
+    },
+    "brand-typography-systems": {
+      "source": "mike-coulbourn/claude-vibes",
+      "sourceType": "github",
+      "skillPath": "plugins/vibes/skills/brand-typography-systems/SKILL.md",
+      "computedHash": "0cf5be2998e4e88d9b9102d6ca12dc2fbcc1ed8e8a7f5756f18cc44f2df89316"
     },
     "brandkit": {
       "source": "leonxlnx/taste-skill",
@@ -115,6 +133,24 @@
       "skillPath": "skills/engineering/codebase-design/SKILL.md",
       "computedHash": "fb1d8ab98ad151551eeade003e3ae55a46578a380fd9fc3ed4dbf9c2fbce0a9f"
     },
+    "cold-call-opener": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/cold-call-opener/SKILL.md",
+      "computedHash": "dbc64f9099fb3413665802e0c750c78d22e3fb2d94deb9603993ad8edf14d38d"
+    },
+    "cold-email-deliverability": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/cold-email-deliverability/SKILL.md",
+      "computedHash": "77cbe4a7b31bcf7909570623aaa979bcd232dcd680884efbba30905ad29555c1"
+    },
+    "cold-email-subject-line-tester": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/cold-email-subject-line-tester/SKILL.md",
+      "computedHash": "d6ef1e57353b6ec3046697710f96d8cb3d0f69b0887d9a61bbba195338eecca8"
+    },
     "copy-editing": {
       "source": "coreyhaines31/marketingskills",
       "sourceType": "github",
@@ -145,6 +181,24 @@
       "skillPath": "skills/d2c-marketing/SKILL.md",
       "computedHash": "49abbe0adfb2d6c0b3382268cc30bbfd17a6a9bb91f40ad23312036a9a38a8b2"
     },
+    "deal-champion-mapping": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/deal-champion-mapping/SKILL.md",
+      "computedHash": "b6294b70673bdc5482af6509aa8c01b80c4779abda10fb92593bab7614a32dce"
+    },
+    "deal-red-flags": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/deal-red-flags/SKILL.md",
+      "computedHash": "589575bc145befc33fd402201c7617b5fca0aa0cdabefc442848553ed7441deb"
+    },
+    "deal-value-calc": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/deal-value-calc/SKILL.md",
+      "computedHash": "46be05648c459f290bc767fef33cc60a9f04a18e3819115995e25625b519d0ce"
+    },
     "design": {
       "source": "nextlevelbuilder/ui-ux-pro-max-skill",
       "sourceType": "github",
@@ -168,6 +222,12 @@
       "sourceType": "github",
       "skillPath": "skills/taste-skill-v1/SKILL.md",
       "computedHash": "0a226c13d69639553cf8a7c40aa5527b026820f8ddaf7a6b263988e32ab44a27"
+    },
+    "design-trends-2026": {
+      "source": "guia-matthieu/clawfu-skills",
+      "sourceType": "github",
+      "skillPath": "skills/ai-design/design-trends-2026/SKILL.md",
+      "computedHash": "8457b036a939ffee21fe4ea1dfa253b9d2bbca18a05ac59b439505187cd15561"
     },
     "domain-modeling": {
       "source": "mattpocock/skills",
@@ -319,11 +379,23 @@
       "skillPath": "skills/llms-txt-generator/SKILL.md",
       "computedHash": "9c6abfaf7b1d7d0d9c52e2c3352722d9d4d675e60ac093ffe2263b808a497856"
     },
+    "local-seo": {
+      "source": "kostja94/marketing-skills",
+      "sourceType": "github",
+      "skillPath": "skills/seo/local/SKILL.md",
+      "computedHash": "e8ca124d538560b412782b3536cd924ca9bcf55bae6a349d429e70af22c3d7bf"
+    },
     "marketing-psychology": {
       "source": "coreyhaines31/marketingskills",
       "sourceType": "github",
       "skillPath": "skills/marketing-psychology/SKILL.md",
       "computedHash": "d057044710ce7b7f9b90b84b3ab64e9359aaf47982b922ec10daca3822185ede"
+    },
+    "meddpicc-scorecard": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/meddpicc-scorecard/SKILL.md",
+      "computedHash": "b16a48f1f73263d99c9c4bfac0c29457dfd65383e1c6752f8d98976636fb32bc"
     },
     "minimalist-ui": {
       "source": "leonxlnx/taste-skill",
@@ -336,6 +408,12 @@
       "sourceType": "github",
       "skillPath": "plugins/javascript-typescript/skills/modern-javascript-patterns/SKILL.md",
       "computedHash": "64ee95d4693e5e3ab29221d2039795a78ba63dca0fff3a4f6840c4335eaa22af"
+    },
+    "negotiation-concession-planner": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/negotiation-concession-planner/SKILL.md",
+      "computedHash": "7f98f429a7370fe02108a6f9da67173f74bd1afb6f475bfc27911cea3e170857"
     },
     "owasp-audit": {
       "source": "briiirussell/cybersecurity-skills",
@@ -384,6 +462,120 @@
       "sourceType": "github",
       "skillPath": "skills/review-animations/SKILL.md",
       "computedHash": "8c2befeb28bb484bf2de7b2fc228774857e266d32a65d76895e78651a536d8cf"
+    },
+    "sales-account-segmentation": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/sales-account-segmentation/SKILL.md",
+      "computedHash": "dfd299266fb149698a4f441446cfa1a8bd57ba9e701fc83668fe5218f291d268"
+    },
+    "sales-account-tiering": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/sales-account-tiering/SKILL.md",
+      "computedHash": "df394dee2c6aeb1ea301549071ebd13045867f65027217cd59b4452234ce3440"
+    },
+    "sales-call-review": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/sales-call-review/SKILL.md",
+      "computedHash": "d8569a91fbafd3c4c5c9fbe789baff5d5d21ce206fead322c41882a236eb54c5"
+    },
+    "sales-career": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/sales-career/SKILL.md",
+      "computedHash": "092928883277ad8c5e17e98cf05c3a363327a33b36aadacd70f2aee742a0eb11"
+    },
+    "sales-comp-design": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/sales-comp-design/SKILL.md",
+      "computedHash": "538ec28a0c9a28915ec50fe773cb09ffcd77dadcea9345ea099b644f2e6e449c"
+    },
+    "sales-discovery-questions": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/sales-discovery-questions/SKILL.md",
+      "computedHash": "c6ba58300d102ff06039fa02ac7b87cf4792eca3cd4c126e99308cbcee94489c"
+    },
+    "sales-hiring": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/sales-hiring/SKILL.md",
+      "computedHash": "8dd25ec7b5532b48bcc3f6289c00c31e013d074cd64ef7474c46e2d7cc7fc2e6"
+    },
+    "sales-icp-definition": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/sales-icp-definition/SKILL.md",
+      "computedHash": "cc836be26833bcb53bdaad841fe7aa1cce8da2e4cf4d91b40ca369f54fff24e1"
+    },
+    "sales-kickoff": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/sales-kickoff/SKILL.md",
+      "computedHash": "1c580543d8e420aaab0298f808008e4031b6ae7030f06d9a36e0f47a690ff6b4"
+    },
+    "sales-market-sizing": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/sales-market-sizing/SKILL.md",
+      "computedHash": "b64e606466d07b8dfa11e1c94b09ae1ee16958de7e5641702093c64d2cd50536"
+    },
+    "sales-meeting-recap": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/sales-meeting-recap/SKILL.md",
+      "computedHash": "e3b127cb636b87d16294299083f882e8da5c5c4b5c0c7115b6dab3fc53fc6784"
+    },
+    "sales-motion": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/sales-motion/SKILL.md",
+      "computedHash": "9419490599c293c6806aaea4283bb4b610d4f58f5038a9b602a5689b41dab85f"
+    },
+    "sales-objection-handling": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/sales-objection-handling/SKILL.md",
+      "computedHash": "cf15a028b3bad631c877bd1bf74422a61f34ef7c1319f2145dca1d3fdf59e489"
+    },
+    "sales-org-structure": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/sales-org-structure/SKILL.md",
+      "computedHash": "20fac91ec63c3b2dfa47a8ae6c69df07a783f5a0af61ff83a842a0eebd5c39eb"
+    },
+    "sales-outbound-sequence": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/sales-outbound-sequence/SKILL.md",
+      "computedHash": "a6891edf9aa072bbf168d80934c0e447a2d9f942c46f35557862caf7ab0c7ce4"
+    },
+    "sales-outreach-personalization": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/sales-outreach-personalization/SKILL.md",
+      "computedHash": "88b3e901d093e277aea5547fb250763149249e0ce3a2b3af9b6742eb914b0dbf"
+    },
+    "sales-pipeline-coverage-modeling": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/sales-pipeline-coverage-modeling/SKILL.md",
+      "computedHash": "69c91dac5a25cc407f63be5f096b7c567889d103c23744a134a8b51dfb6d9adb"
+    },
+    "sales-quota-setting": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/sales-quota-setting/SKILL.md",
+      "computedHash": "1bb22c5d2b216c76ead90cbbe13bfd6920e2f2a0c74a740ff100c2a9af6c9137"
+    },
+    "sales-radar": {
+      "source": "mbfinotti/sales-skills",
+      "sourceType": "github",
+      "skillPath": "skills/sales-radar/SKILL.md",
+      "computedHash": "891cac6e63c305c5ebb2fc4c89f56693207b124c575281fa6d94dbe7bcb09903"
     },
     "schema": {
       "source": "coreyhaines31/marketingskills",
@@ -511,6 +703,18 @@
       "skillPath": "plugins/javascript-typescript/skills/typescript-advanced-types/SKILL.md",
       "computedHash": "bc33bc9653d649a461e49abe45634b6b11a7aeeae552b05ec4d54d4589d16739"
     },
+    "typography-expert": {
+      "source": "curiositech/some_claude_skills",
+      "sourceType": "github",
+      "skillPath": ".claude/skills/typography-expert/SKILL.md",
+      "computedHash": "39b625f60839f19e8c0f11d3cf5b8b32c72d9b724549a9c38fe0ab0d1160ef6e"
+    },
+    "typography-scale-builder": {
+      "source": "onewave-ai/claude-skills",
+      "sourceType": "github",
+      "skillPath": "typography-scale-builder/SKILL.md",
+      "computedHash": "b5620953f4822e81b7065427c6c6aa2cf814d3dedc2aaf89e9df209cab76adec"
+    },
     "ugc-b2c": {
       "source": "tfcbot/rawugc-skills",
       "sourceType": "github",
@@ -594,6 +798,12 @@
       "sourceType": "github",
       "skillPath": "skills/react-best-practices/SKILL.md",
       "computedHash": "6b526d013e28073246a36f99b529bc43745d30832ecfa8217b359c34f260ca6b"
+    },
+    "visual-identity-direction": {
+      "source": "mike-coulbourn/claude-vibes",
+      "sourceType": "github",
+      "skillPath": "plugins/vibes/skills/visual-identity-direction/SKILL.md",
+      "computedHash": "b569f9b12a2080f7dc47e8b607a03fba978b3ff87602c6c9bd03f9723ecc3418"
     },
     "wcag-audit-patterns": {
       "source": "wshobson/agents",
